@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <title>Download the portfolio · Kaushik Raj</title>
+  <link rel="icon" href="../assets/mark.png" type="image/png">
+  <style>
+    @font-face {
+      font-family: Rubik;
+      src: url("../assets/rubik-regular.ttf") format("truetype");
+      font-display: swap;
+    }
+    :root {
+      color-scheme: dark;
+      background: #10110f;
+      color: #f3f1e9;
+      font: 100%/1.6 Rubik, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 43rem; margin: auto; padding: clamp(2rem, 7vw, 5.5rem) 1.4rem; }
+    a { color: #ffa57f; text-underline-offset: .2em; }
+    a:focus-visible { outline: .18rem solid #ffb59a; outline-offset: .3rem; }
+    h1 { margin: 1.4rem 0 .5rem; font-size: clamp(2.6rem, 9vw, 4.8rem); line-height: 1; letter-spacing: -.065em; }
+    p { max-width: 36rem; margin: .75rem 0; color: #c3c4b8; }
+    .button {
+      display: inline-block; margin: .8rem 0 1.4rem; padding: .8rem 1.2rem;
+      border-radius: .4rem; color: #191510; background: #ff895e;
+      text-decoration: none; font-weight: 700;
+    }
+    .button:hover { background: #ffab89; }
+    .resource { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding: 1.1rem 0; border-top: 1px solid #45463f; }
+    .resource a:first-child { color: #f3f1e9; }
+    .hint { margin-top: 1.3rem; font-size: .95rem; }
+    code { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main>
+    <a href="../index.html">← Kaushik Raj’s portfolio</a>
+    <h1>Get the source.</h1>
+    <p>The complete portfolio, including the two project demos, artwork, fonts and VS Code setup.</p>
+    <a class="button" href="../Kaushik-Raj-Portfolio.zip" download="Kaushik-Raj-Portfolio.zip">Download the project ZIP</a>
+    <div class="resource">
+      <a href="../BUILD-GUIDE.html">Open the step-by-step VS Code guide</a>
+      <a href="../BUILD-GUIDE.html" download="BUILD-GUIDE.html">Save guide</a>
+    </div>
+    <div class="resource">
+      <a href="../Kaushik-Raj-All-Code.txt">Read or copy all the code</a>
+      <a href="../Kaushik-Raj-All-Code.txt" download="Kaushik-Raj-All-Code.txt">Save code as TXT</a>
+    </div>
+    <p class="hint">On Windows, right-click the downloaded ZIP and choose <strong>Extract All</strong>. In VS Code, open the extracted folder that contains <code>index.html</code>.</p>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Kaushik’s portfolio in VS Code</title>
+<style>
+:root{color-scheme:light;--ink:#1b251e;--muted:#49544b;--line:#d2d8cc;--green:#1c5940;--paper:#fbfcf7}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.62 system-ui,Arial,sans-serif}
+main{width:min(56rem,calc(100% - 2.4rem));margin:auto;padding:2.7rem 0 5rem}
+header{padding:1.4rem 0 1.9rem;border-bottom:2px solid var(--ink)}h1,h2,h3{line-height:1.15;letter-spacing:-.045em}
+h1{font-size:clamp(2.3rem,6vw,4.6rem);margin:.35rem 0 .75rem;max-width:14em}h2{font-size:clamp(1.55rem,3.3vw,2.35rem);margin:0 0 .65rem}
+p,ul,ol{margin:.5rem 0 .9rem}p,li{max-width:72ch}li{padding:.13rem 0}section{border-bottom:1px solid var(--line);padding:2.1rem 0}
+header p:first-child{font:bold .82rem/1.3 ui-monospace,monospace;color:var(--green);letter-spacing:.08em;text-transform:uppercase}
+a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:.14em}nav{display:flex;flex-wrap:wrap;gap:.5rem 1.15rem;margin-top:1rem;font-size:.94rem}
+code,kbd{font:.9em/1.4 ui-monospace,Consolas,monospace;background:#eaf0e5;padding:.1em .28em;border-radius:3px;overflow-wrap:anywhere}
+pre{white-space:pre;overflow:auto;max-height:28rem;margin:.8rem 0;background:#12201a;color:#e2eee5;padding:.95rem 1.2rem;border-radius:5px;font:14px/1.55 ui-monospace,Consolas,monospace}
+pre code{font:inherit;color:inherit;background:none;padding:0}
+.file{border:1px solid var(--line);border-radius:6px;margin:.45rem 0;background:#fff}
+summary{padding:.75rem 1rem;cursor:pointer;font:600 .9rem/1.5 ui-monospace,Consolas,monospace;overflow-wrap:anywhere}
+summary small{font:400 .82rem system-ui,sans-serif;color:var(--muted);margin-left:.8rem}
+.file-inside{padding:0 1rem .55rem}.file-inside p{font-size:.94rem}
+button{background:var(--green);color:#fff;border:0;border-radius:4px;padding:.5rem .8rem;cursor:pointer;font:600 .85rem system-ui,sans-serif}
+:focus-visible{outline:3px solid #e87e30;outline-offset:3px}.check{border-left:3px solid #6e9e74;padding:.25rem .8rem;color:#24442d;background:#eff5e9}
+table{border-collapse:collapse;width:100%;font-size:.94rem}th,td{text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem;vertical-align:top}
+#feedback{position:fixed;bottom:1rem;right:1rem;background:#193b2d;color:white;border-radius:4px;padding:.45rem .8rem;font-size:.85rem}
+#feedback:empty{display:none}
+@media(max-width:520px){main{padding-top:1rem}.file summary small{display:block;margin:.1rem 0 0 1rem}pre{font-size:12.5px;padding:.65rem}.file-inside{padding-inline:.65rem}}
+</style></head><body><main>
+<header><p>Kaushik Raj · Build guide</p><h1>Make your portfolio in VS Code.</h1>
+<p>Rebuild the animated homepage, the synthesizer, the sorting visualizer and the palette tool on your own computer. Open any filename below to read or copy its complete source.</p>
+<nav aria-label="Guide shortcuts"><a href="#setup">Set up</a><a href="#home">Homepage</a><a href="#interaction">Animations</a><a href="#demos">Project pages</a><a href="#preview">Preview</a><a href="#github">GitHub</a><a href="#deploy">Vercel</a></nav></header>
+<section id="setup"><h2>1. Open your project folder</h2>
+<ol><li>Save <a href="https://kaushik-raj-portfolio.vercel.app/Kaushik-Raj-Portfolio.zip" download>Kaushik-Raj-Portfolio.zip</a> from the portfolio website. Right-click the ZIP in Windows File Explorer and choose <b>Extract All</b>. If you opened this guide from the extracted folder, you can continue below.</li>
+<li>To run the finished site, open the extracted folder containing <code>index.html</code> in VS Code with <b>File → Open Folder</b>. Continue at <a href="#preview">step 5</a>.</li>
+<li>To build it file by file, create a new empty folder called <code>kaushik-portfolio</code> and open that folder in VS Code. Copy the entire <code>assets</code> folder from the download into it. That folder supplies the artwork, four fonts and their licenses.</li>
+<li>Keep this guide open beside VS Code. Use the Explorer’s <b>New File</b> and <b>New Folder</b> buttons to create the paths in steps 2–7. Copy each file’s code and save it with <kbd>Ctrl+S</kbd>. A slash in a path indicates a folder.</li></ol></section>
+<section id="home"><h2>2. Build and style the homepage</h2>
+<p>Create these three files beside <code>assets</code>. The HTML supplies the words, images and links. The two stylesheets choose their layout, typography and colors.</p>
+<details class="file" id="source-0">
+      <summary><span>index.html</span><small>Page structure</small></summary>
+      <div class="file-inside"><p>Start here. The sections with IDs work, about, stack and contact are the destinations for the menu links. The first heading, hero-title, displays My Portfolio. The introductory paragraph is the one with class=&quot;intro&quot;.</p>
+        <button class="copy-file" type="button" aria-label="Copy index.html">Copy entire file</button>
+        <pre tabindex="0"><code data-path="index.html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+  &lt;meta name="theme-color" content="#10110f"&gt;
+  &lt;meta name="description" content="Kaushik Raj’s developer portfolio. Explore an original rooftop courier game, interactive browser experiments, and the tools I build with."&gt;
+  &lt;meta property="og:type" content="website"&gt;
+  &lt;meta property="og:title" content="Kaushik Raj — Portfolio"&gt;
+  &lt;meta property="og:description" content="Web apps, games, and interactive experiments by Kaushik Raj."&gt;
+  &lt;meta property="og:image" content="assets/portfolio-cover.jpg"&gt;
+  &lt;meta name="twitter:card" content="summary_large_image"&gt;
+  &lt;title&gt;Kaushik Raj — Portfolio&lt;/title&gt;
+  &lt;link rel="icon" href="assets/mark.png" type="image/png"&gt;
+  &lt;link rel="preload" href="assets/rubik-bold.ttf" as="font" type="font/ttf" crossorigin&gt;
+  &lt;link rel="preload" href="assets/stix-italic.ttf" as="font" type="font/ttf" crossorigin&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;link rel="stylesheet" href="work.css"&gt;
+  &lt;script defer src="form.js"&gt;&lt;/script&gt;
+  &lt;script defer src="signal.js"&gt;&lt;/script&gt;
+  &lt;script defer src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body id="top"&gt;
+&lt;a class="skip" href="#main"&gt;Skip to content&lt;/a&gt;
+&lt;svg class="icon-bank" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"&gt;
+  &lt;symbol id="i-work" viewBox="0 0 24 24"&gt;&lt;rect x="3.5" y="3.5" width="6" height="6" rx="1"/&gt;&lt;rect x="14.5" y="3.5" width="6" height="6" rx="1"/&gt;&lt;rect x="3.5" y="14.5" width="6" height="6" rx="1"/&gt;&lt;rect x="14.5" y="14.5" width="6" height="6" rx="1"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-mail" viewBox="0 0 24 24"&gt;&lt;rect x="2.75" y="4.75" width="18.5" height="14.5" rx="2.6"/&gt;&lt;path d="m4 7 8 6 8-6"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-drag" viewBox="0 0 24 24"&gt;&lt;path d="M12 2v20M2 12h20m-13-7 3-3 3 3m-6 14 3 3 3-3M5 9l-3 3 3 3m14-6 3 3-3 3"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-github" viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" stroke="none" d="M12 .9a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54l-.02-2.08c-3.12.68-3.78-1.33-3.78-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.72.4-1.22.71-1.5-2.5-.29-5.12-1.25-5.12-5.55 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.1-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.6 1.55.22 2.7.1 2.98.72.8 1.16 1.79 1.16 3.02 0 4.31-2.63 5.25-5.13 5.54.4.35.76 1.03.76 2.07l-.01 3.08c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .9Z"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-linkedin" viewBox="0 0 24 24"&gt;&lt;rect x="2.75" y="2.75" width="18.5" height="18.5" rx="2"/&gt;&lt;path d="M7.5 10.7v6.8M11 17.5v-6.8m0 3c.5-4.1 5.9-4.1 5.9 0v3.8"/&gt;&lt;circle cx="7.5" cy="7.35" r=".9" fill="currentColor" stroke="none"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-copy" viewBox="0 0 24 24"&gt;&lt;rect x="8" y="8" width="13" height="13" rx="2"/&gt;&lt;path d="M16 5V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v10a1 1 0 0 0 1 1h1"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-pin" viewBox="0 0 24 24"&gt;&lt;path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/&gt;&lt;circle cx="12" cy="10" r="2.2"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-close" viewBox="0 0 24 24"&gt;&lt;path d="m6 6 12 12M18 6 6 18"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-play" viewBox="0 0 24 24"&gt;&lt;path d="m8 5 11 7-11 7Z" fill="currentColor" stroke="none"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-file" viewBox="0 0 24 24"&gt;&lt;path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Zm0 0v5h5M8 13h8m-8 4h6"/&gt;&lt;/symbol&gt;
+  &lt;symbol id="i-menu" viewBox="0 0 24 24"&gt;&lt;path d="M3 8h18M3 16h18"/&gt;&lt;/symbol&gt;
+&lt;/svg&gt;
+&lt;header class="site-header"&gt;
+  &lt;div class="frame header-inner"&gt;
+    &lt;a href="#top" class="brand" aria-label="Kaushik Raj, home"&gt;&lt;span class="brand-mark" aria-hidden="true"&gt;&lt;/span&gt;&lt;span&gt;Kaushik Raj&lt;span class="ink-dot"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;nav id="main-nav" class="main-nav" aria-label="Main navigation"&gt;
+      &lt;a href="#work"&gt;Work&lt;/a&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;a href="#stack"&gt;Stack&lt;/a&gt;&lt;a class="nav-contact" href="#contact"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="header-actions"&gt;
+      &lt;button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="true" aria-label="Pause animations" title="Pause animations"&gt;
+        &lt;span class="bars" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;span id="motion-text"&gt;Motion on&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;a class="contact-link" href="#contact"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-mail"/&gt;&lt;/svg&gt;Get in touch&lt;/a&gt;
+      &lt;button class="menu-toggle icon-button" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-menu"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+&lt;main id="main"&gt;
+  &lt;section class="hero" aria-labelledby="hero-title"&gt;
+    &lt;div class="frame hero-inner"&gt;
+      &lt;div class="hero-copy"&gt;
+        &lt;p class="eyebrow enter" style="--delay:0ms"&gt;&lt;span class="accent-rule"&gt;&lt;/span&gt;Creative developer&lt;/p&gt;
+        &lt;h1 id="hero-title" aria-label="My Portfolio."&gt;&lt;span class="title-line"&gt;&lt;span&gt;My&lt;/span&gt;&lt;/span&gt;&lt;span class="title-line italic-line"&gt;&lt;em&gt;Portfolio.&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt;
+        &lt;p class="intro enter" style="--delay:130ms"&gt;I’m &lt;strong&gt;Kaushik Raj&lt;/strong&gt;, a first-year B.Tech student at Ramaiah Institute of Technology. I build web apps, games, and interactive experiments.&lt;/p&gt;
+        &lt;div class="hero-actions enter" style="--delay:180ms"&gt;
+          &lt;a class="button primary" href="#work"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-work"/&gt;&lt;/svg&gt;Explore my work&lt;/a&gt;
+          &lt;a class="button subtle" href="#about"&gt;About me&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;figure class="stage" id="stage"&gt;
+        &lt;div class="stage-plot" aria-hidden="true"&gt;&lt;/div&gt;
+        &lt;div class="stage-corners" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;div class="object-space" id="object-space"&gt;
+          &lt;img class="object-still" src="assets/trefoil.webp" alt="A three-dimensional knot sculpted from fine copper ribs" width="900" height="690" fetchpriority="high"&gt;
+          &lt;canvas id="sculpture" tabindex="0" aria-label="Interactive trefoil sculpture. Drag to rotate, or use the arrow keys. Press Home to reset the view."&gt;&lt;/canvas&gt;
+        &lt;/div&gt;
+        &lt;figcaption class="object-caption"&gt;
+          &lt;span class="object-label"&gt;&lt;i aria-hidden="true"&gt;&lt;/i&gt;Trefoil study&lt;/span&gt;
+          &lt;span class="drag-hint"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-drag"/&gt;&lt;/svg&gt;&lt;span&gt;Drag to rotate&lt;/span&gt;&lt;/span&gt;
+          &lt;span class="materials" role="group" aria-label="Sculpture material"&gt;
+            &lt;button type="button" class="swatch" data-material="copper" aria-label="Copper material" title="Copper" aria-pressed="true" style="--swatch:#ff793f"&gt;&lt;/button&gt;
+            &lt;button type="button" class="swatch" data-material="iris" aria-label="Iris material" title="Iris" aria-pressed="false" style="--swatch:#b39af1"&gt;&lt;/button&gt;
+            &lt;button type="button" class="swatch" data-material="silver" aria-label="Silver material" title="Silver" aria-pressed="false" style="--swatch:#c9d4cc"&gt;&lt;/button&gt;
+          &lt;/span&gt;
+        &lt;/figcaption&gt;
+      &lt;/figure&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;div class="ticker" aria-label="Technologies"&gt;
+    &lt;div class="ticker-track"&gt;&lt;div class="ticker-group"&gt;&lt;span&gt;Python&lt;/span&gt;&lt;span&gt;React&lt;/span&gt;&lt;span&gt;Node.js&lt;/span&gt;&lt;span&gt;C/C++&lt;/span&gt;&lt;span&gt;Java&lt;/span&gt;&lt;span&gt;HTML&lt;/span&gt;&lt;span&gt;CSS&lt;/span&gt;&lt;span&gt;SQL&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;section id="work" class="frame section work" aria-labelledby="work-title"&gt;
+    &lt;div class="section-heading reveal"&gt;&lt;h2 id="work-title"&gt;Selected &lt;em&gt;work.&lt;/em&gt;&lt;/h2&gt;&lt;a class="text-link" href="https://github.com/Kaushik-Raj10" target="_blank" rel="noopener noreferrer"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;GitHub&lt;/a&gt;&lt;/div&gt;
+    &lt;article class="well-feature reveal" aria-labelledby="well-name"&gt;
+      &lt;div class="well-copy"&gt;
+        &lt;p class="category"&gt;Full-stack project &lt;span&gt;/&lt;/span&gt; React + FastAPI&lt;/p&gt;
+        &lt;h3 id="well-name"&gt;WELL&lt;em&gt;sync&lt;/em&gt;&lt;/h3&gt;
+        &lt;p&gt;A daily check-in for sleep, movement, hydration, and mood. Explore patterns in the dashboard and talk through your habits with the AI companion.&lt;/p&gt;
+        &lt;div class="feature-actions"&gt;
+          &lt;a class="button well-primary" href="https://wellsync-eight.vercel.app/" target="_blank" rel="noopener noreferrer"&gt;Open live app&lt;/a&gt;
+          &lt;a class="feature-code" href="https://github.com/Kaushik-Raj10/WELLSYNC" target="_blank" rel="noopener noreferrer"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;View code&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="well-art" aria-hidden="true"&gt;&lt;div class="well-field"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;W&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/article&gt;
+    &lt;div class="projects"&gt;
+      &lt;article class="project reveal"&gt;
+        &lt;button type="button" class="poster mail-poster" data-open="mail-dialog" aria-label="View Monsoon Mail project details"&gt;
+          &lt;img src="assets/monsoon-mail.webp" alt="Concept artwork of a red letterbox on a rain-soaked rooftop" width="1200" height="800" loading="lazy"&gt;
+          &lt;span class="poster-label"&gt;&lt;i class="status-dot"&gt;&lt;/i&gt;In development&lt;/span&gt;
+          &lt;span class="poster-action"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-file"/&gt;&lt;/svg&gt;Project notes&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;p class="category"&gt;GAME DEVELOPMENT &lt;span&gt;/&lt;/span&gt; ROBLOX&lt;/p&gt;
+        &lt;h3&gt;&lt;button class="project-title" type="button" data-open="mail-dialog"&gt;Monsoon Mail&lt;/button&gt;&lt;/h3&gt;
+        &lt;p class="project-description"&gt;A rooftop courier game about crossing bridges and earning delivery stamps.&lt;/p&gt;
+      &lt;/article&gt;
+      &lt;article class="project reveal" style="--delay:75ms"&gt;
+        &lt;button type="button" class="poster signal-poster" data-open="signal-dialog" aria-label="Open the interactive Signal Lab"&gt;
+          &lt;canvas class="signal-art" aria-hidden="true" id="signal-preview"&gt;&lt;/canvas&gt;
+          &lt;span class="poster-label"&gt;&lt;i class="live-dot"&gt;&lt;/i&gt;Live experiment&lt;/span&gt;
+          &lt;span class="poster-action"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-play"/&gt;&lt;/svg&gt;Try it&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;p class="category"&gt;CREATIVE CODING &lt;span&gt;/&lt;/span&gt; WEB AUDIO&lt;/p&gt;
+        &lt;h3&gt;&lt;button class="project-title" type="button" data-open="signal-dialog"&gt;Signal Lab&lt;/button&gt;&lt;/h3&gt;
+        &lt;p class="project-description"&gt;A pocket-sized synthesizer. Shape a waveform, change its pitch, and hear the result.&lt;/p&gt;
+      &lt;/article&gt;
+      &lt;article class="project reveal"&gt;
+        &lt;a class="poster sort-studio-cover" href="projects/sort-studio/index.html" aria-label="Open Sort Studio"&gt;
+          &lt;div class="bar-cover-art" aria-hidden="true"&gt;&lt;i style="--height:32%;--order:0"&gt;&lt;/i&gt;&lt;i style="--height:70%;--order:1"&gt;&lt;/i&gt;&lt;i style="--height:39%;--order:2"&gt;&lt;/i&gt;&lt;i style="--height:90%;--order:3"&gt;&lt;/i&gt;&lt;i style="--height:52%;--order:4"&gt;&lt;/i&gt;&lt;i style="--height:76%;--order:5"&gt;&lt;/i&gt;&lt;i style="--height:25%;--order:6"&gt;&lt;/i&gt;&lt;i style="--height:61%;--order:7"&gt;&lt;/i&gt;&lt;i style="--height:100%;--order:8"&gt;&lt;/i&gt;&lt;i style="--height:46%;--order:9"&gt;&lt;/i&gt;&lt;i style="--height:84%;--order:10"&gt;&lt;/i&gt;&lt;i style="--height:58%;--order:11"&gt;&lt;/i&gt;&lt;i style="--height:37%;--order:12"&gt;&lt;/i&gt;&lt;i style="--height:67%;--order:13"&gt;&lt;/i&gt;&lt;i style="--height:95%;--order:14"&gt;&lt;/i&gt;&lt;i style="--height:50%;--order:15"&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;span class="poster-action"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-play"/&gt;&lt;/svg&gt;Try it&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;p class="category"&gt;Algorithms &lt;span&gt;/&lt;/span&gt; JavaScript&lt;/p&gt;
+        &lt;h3&gt;&lt;a class="project-title" href="projects/sort-studio/index.html"&gt;Sort Studio&lt;/a&gt;&lt;/h3&gt;
+        &lt;p class="project-description"&gt;Follow an array one comparison at a time, then run a different sorting algorithm on the same numbers.&lt;/p&gt;
+      &lt;/article&gt;
+      &lt;article class="project reveal"&gt;
+        &lt;a class="poster palette-press-cover" href="projects/palette-press/index.html" aria-label="Open Palette Press"&gt;
+          &lt;div class="palette-cover-art" aria-hidden="true"&gt;&lt;i style="--chip:#F2C197;--order:0"&gt;&lt;span&gt;#F2C197&lt;/span&gt;&lt;/i&gt;&lt;i style="--chip:#FF7852;--order:1"&gt;&lt;span&gt;#FF7852&lt;/span&gt;&lt;/i&gt;&lt;i style="--chip:#C9ADED;--order:2"&gt;&lt;span&gt;#C9ADED&lt;/span&gt;&lt;/i&gt;&lt;i style="--chip:#AF5477;--order:3"&gt;&lt;span&gt;#AF5477&lt;/span&gt;&lt;/i&gt;&lt;i style="--chip:#4F324C;--order:4"&gt;&lt;span&gt;#4F324C&lt;/span&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;span class="poster-action"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-play"/&gt;&lt;/svg&gt;Try it&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;p class="category"&gt;Design tool &lt;span&gt;/&lt;/span&gt; Color&lt;/p&gt;
+        &lt;h3&gt;&lt;a class="project-title" href="projects/palette-press/index.html"&gt;Palette Press&lt;/a&gt;&lt;/h3&gt;
+        &lt;p class="project-description"&gt;Build a five-color palette, lock your favorites, and export the colors as CSS for your next project.&lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+    &lt;section class="repo-shelf" aria-labelledby="repo-title" id="github-projects"&gt;
+      &lt;div class="repo-heading reveal"&gt;
+        &lt;h3 id="repo-title"&gt;Python on &lt;em&gt;GitHub.&lt;/em&gt;&lt;/h3&gt;
+        &lt;a class="text-link" href="https://github.com/Kaushik-Raj10?tab=repositories" target="_blank" rel="noopener noreferrer"&gt;All repositories&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class="repo-list"&gt;
+        &lt;article class="repo-item reveal"&gt;
+          &lt;p class="repo-tech"&gt;Python · SQLite&lt;/p&gt;&lt;h4&gt;&lt;a href="https://github.com/Kaushik-Raj10/Expense-tracker" target="_blank" rel="noopener noreferrer"&gt;Expense Tracker&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;Log expenses in a Tkinter desktop app and review totals by month or category. A Flask API uses the same database.&lt;/p&gt;
+          &lt;a class="repo-source" href="https://github.com/Kaushik-Raj10/Expense-tracker" target="_blank" rel="noopener noreferrer" aria-label="View Expense Tracker source on GitHub"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;View source&lt;/a&gt;
+        &lt;/article&gt;
+        &lt;article class="repo-item reveal"&gt;
+          &lt;p class="repo-tech"&gt;Python · Game&lt;/p&gt;&lt;h4&gt;&lt;a href="https://github.com/Kaushik-Raj10/Snake-Game" target="_blank" rel="noopener noreferrer"&gt;Snake–Water–Gun&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;Pick snake, water, or gun in the terminal and play a round against the computer’s randomly chosen move.&lt;/p&gt;
+          &lt;a class="repo-source" href="https://github.com/Kaushik-Raj10/Snake-Game" target="_blank" rel="noopener noreferrer" aria-label="View Snake–Water–Gun source on GitHub"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;View source&lt;/a&gt;
+        &lt;/article&gt;
+        &lt;article class="repo-item reveal"&gt;
+          &lt;p class="repo-tech"&gt;Python · Game&lt;/p&gt;&lt;h4&gt;&lt;a href="https://github.com/Kaushik-Raj10/Number-Guessing-Game" target="_blank" rel="noopener noreferrer"&gt;Number Guessing Game&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;Guess the hidden number across three difficulty levels. Hints tell you when you’re close, and each round has an attempt limit.&lt;/p&gt;
+          &lt;a class="repo-source" href="https://github.com/Kaushik-Raj10/Number-Guessing-Game" target="_blank" rel="noopener noreferrer" aria-label="View Number Guessing Game source on GitHub"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;View source&lt;/a&gt;
+        &lt;/article&gt;
+        &lt;article class="repo-item reveal"&gt;
+          &lt;p class="repo-tech"&gt;Python · CLI&lt;/p&gt;&lt;h4&gt;&lt;a href="https://github.com/Kaushik-Raj10/Password-Generator" target="_blank" rel="noopener noreferrer"&gt;Password Generator&lt;/a&gt;&lt;/h4&gt;
+          &lt;p&gt;Choose a length and generate three strings using letters, numbers, and punctuation.&lt;/p&gt;
+          &lt;a class="repo-source" href="https://github.com/Kaushik-Raj10/Password-Generator" target="_blank" rel="noopener noreferrer" aria-label="View Password Generator source on GitHub"&gt;&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;View source&lt;/a&gt;
+        &lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/section&gt;
+  &lt;section class="about-section" aria-labelledby="about-title"&gt;
+    &lt;div class="frame about-grid"&gt;
+      &lt;div class="bio reveal" id="about"&gt;
+        &lt;p class="eyebrow"&gt;&lt;span class="accent-rule"&gt;&lt;/span&gt;About me&lt;/p&gt;
+        &lt;h2 id="about-title"&gt;Hi, I’m &lt;em&gt;Kaushik.&lt;/em&gt;&lt;/h2&gt;
+        &lt;p&gt;I’m studying engineering at Ramaiah Institute of Technology. I like the part of a project where a sketch turns into something a teammate can actually click, play, or break.&lt;/p&gt;
+        &lt;p&gt;At a hackathon, I’m up for building the interface, connecting it to the backend, and getting a working demo into someone’s hands.&lt;/p&gt;
+        &lt;p class="location"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-pin"/&gt;&lt;/svg&gt;Bengaluru, India&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="stack reveal" id="stack" style="--delay:80ms"&gt;
+        &lt;h3&gt;My toolkit&lt;span class="ink-dot"&gt;.&lt;/span&gt;&lt;/h3&gt;
+        &lt;dl&gt;&lt;div&gt;&lt;dt&gt;Languages&lt;/dt&gt;&lt;dd&gt;Python &lt;b&gt;·&lt;/b&gt; C/C++ &lt;b&gt;·&lt;/b&gt; Java&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Frontend&lt;/dt&gt;&lt;dd&gt;React &lt;b&gt;·&lt;/b&gt; HTML &lt;b&gt;·&lt;/b&gt; CSS&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;Backend &amp;amp; data&lt;/dt&gt;&lt;dd&gt;Node.js &lt;b&gt;·&lt;/b&gt; SQL&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section id="contact" class="frame section contact" aria-labelledby="contact-title"&gt;
+    &lt;div class="contact-copy reveal"&gt;
+      &lt;p class="eyebrow"&gt;&lt;span class="accent-rule"&gt;&lt;/span&gt;Contact&lt;/p&gt;
+      &lt;h2 id="contact-title"&gt;Let’s build &lt;em&gt;together.&lt;/em&gt;&lt;/h2&gt;
+      &lt;p&gt;Have a hackathon team or an idea you want to try? Drop me a line.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="contact-methods reveal" style="--delay:70ms"&gt;
+      &lt;div class="email-row"&gt;&lt;a href="mailto:contact.kaushikraj.cse@gmail.com" class="email-link"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-mail"/&gt;&lt;/svg&gt;&lt;span&gt;contact.kaushikraj.cse@gmail.com&lt;/span&gt;&lt;/a&gt;&lt;button class="icon-button copy-button" id="copy-email" type="button" aria-label="Copy email address" title="Copy email address"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+      &lt;div class="social-row"&gt;&lt;a href="https://github.com/Kaushik-Raj10" target="_blank" rel="noopener noreferrer"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-github"/&gt;&lt;/svg&gt;GitHub&lt;/a&gt;&lt;a href="https://www.linkedin.com/in/kaushik-raj-99652a438/" target="_blank" rel="noopener noreferrer"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-linkedin"/&gt;&lt;/svg&gt;LinkedIn&lt;/a&gt;&lt;/div&gt;
+      &lt;p id="copy-status" role="status" class="copy-status"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;footer class="site-footer"&gt;&lt;div class="frame footer-inner"&gt;&lt;a href="#top" class="footer-brand"&gt;&lt;span class="brand-mark" aria-hidden="true"&gt;&lt;/span&gt;Kaushik Raj&lt;/a&gt;&lt;span&gt;© 2026&lt;/span&gt;&lt;a class="top-link" href="#top"&gt;Back to top&lt;/a&gt;&lt;/div&gt;&lt;/footer&gt;
+&lt;dialog id="mail-dialog" class="project-dialog" aria-labelledby="mail-title"&gt;
+  &lt;button class="icon-button dialog-close" type="button" data-close aria-label="Close project"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-close"/&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;div class="detail-cover"&gt;&lt;img src="assets/monsoon-mail.webp" alt="Monsoon Mail rooftop concept artwork" width="900" height="450" loading="lazy"&gt;&lt;span class="poster-label"&gt;Concept art&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="detail-body"&gt;
+    &lt;p class="category"&gt;ROBLOX &lt;span&gt;/&lt;/span&gt; IN DEVELOPMENT&lt;/p&gt;&lt;h2 id="mail-title"&gt;Monsoon &lt;em&gt;Mail.&lt;/em&gt;&lt;/h2&gt;
+    &lt;p&gt;Monsoon Mail is a Roblox game I’m building around a rooftop delivery route. The first stretch connects two rooftops with a bridge and gives the player a stamp for finishing a delivery.&lt;/p&gt;
+    &lt;h3&gt;Inside the prototype&lt;/h3&gt;
+    &lt;ul class="milestones"&gt;&lt;li&gt;A traversable roof-to-roof route&lt;/li&gt;&lt;li&gt;A delivery prompt players can interact with&lt;/li&gt;&lt;li&gt;A stamp to mark a completed delivery&lt;/li&gt;&lt;/ul&gt;
+    &lt;button type="button" class="button subtle" data-close&gt;Back to work&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+&lt;dialog id="signal-dialog" class="project-dialog" aria-labelledby="signal-title"&gt;
+  &lt;button class="icon-button dialog-close" type="button" data-close aria-label="Close experiment"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-close"/&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;div class="lab-display"&gt;&lt;canvas id="signal-screen" class="signal-art" aria-label="Visualization of the selected waveform"&gt;&lt;/canvas&gt;&lt;span class="lab-readout" id="lab-readout"&gt;SINE / 220 HZ&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="detail-body lab-body"&gt;
+    &lt;p class="category"&gt;INTERACTIVE EXPERIMENT &lt;span&gt;/&lt;/span&gt; WEB AUDIO&lt;/p&gt;&lt;h2 id="signal-title"&gt;Signal &lt;em&gt;Lab.&lt;/em&gt;&lt;/h2&gt;
+    &lt;p&gt;Pick a wave, change its pitch, and switch on the sound to hear what you’ve made.&lt;/p&gt;
+    &lt;fieldset class="wave-controls"&gt;&lt;legend&gt;Waveform&lt;/legend&gt;&lt;div class="wave-options"&gt;&lt;button type="button" data-wave="sine" aria-pressed="true"&gt;Sine&lt;/button&gt;&lt;button type="button" data-wave="triangle" aria-pressed="false"&gt;Triangle&lt;/button&gt;&lt;button type="button" data-wave="square" aria-pressed="false"&gt;Square&lt;/button&gt;&lt;/div&gt;&lt;/fieldset&gt;
+    &lt;label class="pitch-label" for="pitch"&gt;Pitch &lt;output id="pitch-value" for="pitch"&gt;220 Hz&lt;/output&gt;&lt;/label&gt;
+    &lt;input type="range" id="pitch" min="110" max="660" value="220" step="1"&gt;
+    &lt;button id="sound-toggle" type="button" class="button primary" aria-pressed="false"&gt;&lt;svg class="icon"&gt;&lt;use href="#i-play"/&gt;&lt;/svg&gt;&lt;span&gt;Play sound&lt;/span&gt;&lt;/button&gt;&lt;p id="audio-status" role="status"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-1">
+      <summary><span>style.css</span><small>Layout and type</small></summary>
+      <div class="file-inside"><p>The :root block defines the orange accent and page colors. The .hero-inner grid places the text beside the sculpture. The media queries near the bottom stack them on small screens.</p>
+        <button class="copy-file" type="button" aria-label="Copy style.css">Copy entire file</button>
+        <pre tabindex="0"><code data-path="style.css">@font-face{font-family:Rubik;src:url("assets/rubik-regular.ttf") format("truetype");font-style:normal;font-weight:400 500;font-display:swap}
+@font-face{font-family:Rubik;src:url("assets/rubik-bold.ttf") format("truetype");font-style:normal;font-weight:600 900;font-display:swap}
+@font-face{font-family:STIX;src:url("assets/stix-italic.ttf") format("truetype");font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:"Source Code";src:url("assets/source-code.ttf") format("truetype");font-weight:400 600;font-display:swap}
+:root{color-scheme:dark;--bg:#10110f;--paper:#f3f1e9;--muted:#b6b6ab;--soft:#9b9d93;--accent:#ff7648;--rule:#30312c;--mono:"Source Code",ui-monospace,monospace;--serif:STIX,"Times New Roman",serif;--gutter:clamp(1.25rem,5.9vw,6rem);--frame:85rem}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:6.4rem}
+body{margin:0;background:var(--bg);color:var(--paper);font:400 1rem/1.55 Rubik,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:#ff9a75;color:#15120d}
+button,a,input{touch-action:manipulation}
+button,input{font:inherit}
+button,a{color:inherit;-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{text-decoration:none}
+button{border:0;background:none}
+button:focus-visible,a:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid #ffb291;outline-offset:5px}
+button:disabled{cursor:default}
+h1,h2,h3,p,figure,dl,dd{margin:0}
+h1,h2,h3{line-height:1.02}
+h2,h3{font-weight:600}
+.frame{width:min(calc(100% - 2 * var(--gutter)),var(--frame));margin-inline:auto}
+.icon-bank{display:none}
+.icon{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ink-dot{color:var(--accent)}
+.skip{position:fixed;top:-6rem;left:1rem;padding:.7rem 1rem;z-index:50;background:var(--paper);color:var(--bg);border-radius:.25rem}
+.skip:focus{top:.7rem}
+.site-header{position:relative;background:var(--bg);border-bottom:1px solid var(--rule);z-index:10}
+.header-inner{height:4.85rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
+.brand,.footer-brand{display:inline-flex;align-items:center;gap:.65rem;justify-self:start;font-size:1.32rem;font-weight:650;letter-spacing:-.065em;line-height:1.2;white-space:nowrap}
+.brand-mark{display:inline-block;position:relative;width:2.05rem;height:2.02rem;flex:none;color:var(--accent);transition:transform .35s ease}
+.brand-mark::before,.brand-mark::after{content:"";position:absolute;inset:0;background:currentColor}
+.brand-mark::before{clip-path:polygon(13% 9%,36% 9%,26% 91%,3% 91%)}
+.brand-mark::after{clip-path:polygon(70% 9%,99% 9%,54% 49%,90% 91%,58% 91%,23% 50%)}
+.brand:hover .brand-mark,.footer-brand:hover .brand-mark{transform:rotate(-7deg)}
+.main-nav,.header-actions{display:flex;align-items:center}
+.main-nav{gap:2.15rem}
+.main-nav a,.top-link{font-size:.92rem;color:#c4c5bb;transition:color .2s}
+.main-nav a:hover,.top-link:hover,.text-link:hover,.social-row a:hover,.email-link:hover{color:var(--accent)}
+.header-actions{justify-self:end;gap:1.35rem}
+.motion-toggle{display:flex;align-items:center;gap:.48rem;padding:.55rem 0;color:var(--soft);font:400 .76rem var(--mono);white-space:nowrap}
+.motion-toggle:hover{color:var(--paper)}
+.bars{display:inline-flex;align-items:center;justify-content:center;gap:2px;width:16px;height:17px;color:var(--accent)}
+.bars i{display:block;width:2px;height:12px;background:currentColor;animation:meter 1s ease-in-out infinite alternate;transform-origin:center;border-radius:1px}
+.bars i:nth-child(2){height:16px;animation-delay:-.7s}.bars i:nth-child(3){height:9px;animation-delay:-.35s}.bars i:nth-child(4){height:13px;animation-delay:-.9s}
+@keyframes meter{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+.contact-link{display:inline-flex;padding:.54rem .97rem;gap:.52rem;border:1px solid #55564e;border-radius:5rem;font-size:.9rem;align-items:center;transition:background .2s,border-color .2s}
+.contact-link:hover,.button.subtle:hover{background:#262722;border-color:#8a8b80}
+.icon-button{display:inline-grid;place-items:center;width:2.55rem;height:2.55rem;padding:0;border:1px solid #45463f;border-radius:50%;font-size:1.1rem}
+.menu-toggle,.main-nav .nav-contact{display:none}
+.hero{overflow:hidden;isolation:isolate;position:relative;background:radial-gradient(ellipse at 83% 47%,#1b18131c,transparent 58%)}
+.hero-inner{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);align-items:center;gap:clamp(1rem,3.1vw,3.5rem);padding:clamp(2.9rem,4.35vw,4.65rem) 0 clamp(3.05rem,4.4vw,4.8rem)}
+.hero-copy{position:relative;z-index:2}
+.eyebrow,.category,.object-label,.lab-readout{font:500 .78rem/1.35 var(--mono);text-transform:uppercase;letter-spacing:.115em}
+.eyebrow{display:flex;align-items:center;gap:.73rem;color:#cbc9bd}
+.accent-rule{display:inline-block;width:1.65rem;height:2px;background:var(--accent)}
+h1{font-weight:700;font-size:clamp(5.7rem,8.8vw,8.9rem);letter-spacing:-.072em;margin:1.38rem 0 1.35rem;line-height:.91}
+.title-line{display:block;width:max-content;max-width:100%;padding-right:.07em}
+.title-line&gt;span,.title-line&gt;em{display:block}
+.italic-line{font-size:1.15em;margin-left:.003em;line-height:.81}
+h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent)}
+h1 em{letter-spacing:-.07em;padding-right:.08em}
+.intro{max-width:31rem;color:var(--muted);font-size:clamp(1rem,1.2vw,1.12rem);line-height:1.62}
+.intro strong{color:var(--paper);font-weight:500}
+.hero-actions{display:flex;gap:.8rem;align-items:center;margin-top:1.55rem}
+.button{min-height:2.95rem;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.64rem 1.12rem;border:1px solid transparent;border-radius:.42rem;font-size:.92rem;font-weight:500;line-height:1.35;transition:transform .22s ease,background .22s,border-color .22s}
+.button:active{transform:translateY(1px)}
+.button.primary{background:var(--accent);color:#1a110c;border-color:var(--accent)}
+.button.primary:hover{background:#ff946f;border-color:#ff946f;transform:translateY(-2px)}
+.button.subtle{background:#ffffff03;border-color:#47483f}
+.stage{align-self:center;position:relative;min-width:0;isolation:isolate}
+.object-space{position:relative;aspect-ratio:1.34;isolation:isolate}
+.object-space&gt;img,.object-space&gt;canvas{width:100%;height:100%;display:block;position:absolute;inset:0;object-fit:contain}
+.object-space canvas{cursor:grab;touch-action:pan-y;outline-offset:-5px;border-radius:5px}
+.object-space canvas.dragging{cursor:grabbing}
+.stage-plot{position:absolute;z-index:-2;inset:-15% -9% -5%;pointer-events:none;background-image:radial-gradient(#8d837140 .9px,transparent 1px);background-size:21px 21px;mask-image:radial-gradient(ellipse at 51% 50%,#000 22%,#0007 55%,transparent 77%)}
+.stage::before{content:"";position:absolute;inset:8% 6% 13%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#8f491a12,transparent 68%)}
+.stage-corners{pointer-events:none;position:absolute;inset:5% 3.5% 16%}
+.stage-corners i{position:absolute;width:10px;height:10px;color:#5d5c50}
+.stage-corners i::before,.stage-corners i::after{content:"";position:absolute;background:currentColor}
+.stage-corners i::before{height:1px;width:9px;top:4px}.stage-corners i::after{height:9px;width:1px;left:4px}
+.stage-corners i:nth-child(1){top:0;left:0}.stage-corners i:nth-child(2){top:0;right:0}.stage-corners i:nth-child(3){bottom:0;left:0}.stage-corners i:nth-child(4){bottom:0;right:0}
+.object-caption{margin:.35rem 3.5% 0;display:flex;align-items:center;gap:.9rem;min-height:2.25rem;color:var(--soft)}
+.object-label{display:flex;align-items:center;gap:.5rem;color:#c7c5b7;font-size:.73rem;letter-spacing:.09em}
+.object-label i{width:.53rem;height:.53rem;border:1.5px solid var(--accent);transform:rotate(45deg)}
+.drag-hint{display:flex;align-items:center;gap:.43rem;font:400 .76rem var(--mono);padding-left:.85rem;border-left:1px solid #43443c}
+.drag-hint .icon{width:13px;height:13px}
+.materials{display:flex;align-items:center;gap:2px;margin-left:auto}
+.swatch{display:grid;place-content:center;background:none;border:0;border-radius:50%;width:1.67rem;height:1.67rem;padding:0;position:relative}
+.swatch::before{content:"";width:.64rem;height:.64rem;background:var(--swatch);border-radius:50%}
+.swatch::after{content:"";position:absolute;inset:.2rem;border-radius:50%;border:1px solid transparent}
+.swatch[aria-pressed=true]::after,.swatch:hover::after{border-color:var(--swatch)}
+.ticker{overflow:hidden;width:100%;border-block:1px solid var(--rule);background:#151611;color:#c3c2b5;min-height:3.35rem;display:flex;align-items:center}
+.ticker-track,.ticker-group{display:flex;align-items:center;flex-shrink:0;width:max-content}
+.ticker-track.ready{animation:ticker-shift 36s linear infinite}
+.ticker-group span{display:inline-flex;align-items:center;gap:clamp(1.6rem,3.2vw,3.6rem);padding-right:clamp(1.6rem,3.2vw,3.6rem);font:500 .94rem var(--mono);white-space:nowrap}
+.ticker-group span::before{content:"";display:inline-block;width:.65rem;height:.65rem;background:var(--accent);clip-path:polygon(42% 0,58% 0,58% 32%,80% 10%,91% 21%,69% 43%,100% 43%,100% 58%,68% 58%,90% 80%,79% 91%,57% 69%,57% 100%,42% 100%,42% 69%,20% 91%,9% 80%,31% 58%,0 58%,0 42%,31% 42%,9% 20%,20% 9%,42% 31%)}
+@keyframes ticker-shift{to{transform:translateX(var(--ticker-shift,-50%))}}
+.section{padding-block:clamp(3.6rem,5.6vw,5.9rem)}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.7rem}
+h2{font-size:clamp(2.8rem,4.4vw,4.9rem);letter-spacing:-.065em}
+h2 em{font-size:1.12em;letter-spacing:-.068em}
+.text-link,.social-row a,.email-link,.location{display:inline-flex;align-items:center;gap:.55rem}
+.text-link{font-size:.9rem;color:#dad9cf;border:1px solid #373932;padding:.46rem .85rem;border-radius:5rem}
+.projects{display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(1.25rem,2.6vw,2.8rem)}
+.project{min-width:0}
+.poster{display:block;overflow:hidden;width:100%;height:clamp(14.5rem,22vw,23rem);border:1px solid #393b35;border-radius:.65rem;position:relative;padding:0;isolation:isolate;text-align:left;color:#f8f5ed}
+.poster&gt;img,.signal-art{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+.poster&gt;img{transition:transform .85s cubic-bezier(.2,.72,.25,1)}
+.poster:hover&gt;img{transform:scale(1.045)}
+.mail-poster,.detail-cover{background:#17373d}
+.signal-poster,.lab-display{background:#171326 url("assets/signal-field.webp") center/cover}
+.poster::after,.detail-cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#080b0c36,transparent 35%,transparent 66%,#0b0c1036)}
+.poster-label,.poster-action{display:inline-flex;align-items:center;gap:.48rem;position:absolute;z-index:1;line-height:1.2;color:#edeee8;background:#111510d9;backdrop-filter:blur(8px);border:1px solid #ffffff29}
+.poster-label{top:1rem;left:1rem;font:.75rem/1.2 var(--mono);border-radius:4rem;padding:.42rem .69rem}
+.status-dot,.live-dot{width:.44rem;height:.44rem;border-radius:50%;display:inline-block;background:#ffc975}
+.live-dot{background:#b8a4ff}
+.poster-action{right:.9rem;bottom:.9rem;padding:.42rem .67rem;font-size:.8rem;border-radius:.28rem}
+.poster:hover .poster-action{background:#20251de8}
+.category{margin:1.04rem 0 .45rem;color:var(--soft);font-size:.75rem;letter-spacing:.075em}
+.category span{margin:0 .3em;color:var(--accent)}
+.project h3{font-size:clamp(1.55rem,2.25vw,2.38rem);letter-spacing:-.055em}
+.project-title{padding:0;font:inherit;letter-spacing:inherit;text-align:left}
+.project-title:hover{color:var(--accent)}
+.project-description{margin-top:.48rem;color:var(--muted);font-size:1rem;max-width:36rem}
+.about-section{background:#161712;border-block:1px solid var(--rule);padding-block:clamp(3.8rem,6vw,6.5rem)}
+.about-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:clamp(2rem,6.3vw,7rem);align-items:center}
+.bio h2,.contact-copy h2{margin:.95rem 0 1.05rem}
+.bio&gt;p:not(.eyebrow):not(.location),.contact-copy&gt;p:last-child,.detail-body&gt;p:not(.category){color:var(--muted);line-height:1.65}
+.bio&gt;p:not(.eyebrow)+p:not(.location){margin-top:.7rem}
+.location{margin-top:1.3rem;color:#c6c6b9;font:400 .83rem var(--mono)}
+.location .icon{color:var(--accent);width:1rem;height:1rem}
+.stack{border-left:1px solid #3b3c33;padding-left:clamp(1.5rem,3.8vw,4.4rem)}
+.stack h3{font-size:clamp(1.75rem,2.6vw,2.7rem);letter-spacing:-.065em;margin:0 0 1.15rem}
+.stack dl&gt;div{border-top:1px solid #34362d;padding:.85rem 0 .9rem;display:grid;grid-template-columns:minmax(7.1rem,.8fr) minmax(0,1.5fr);align-items:baseline;gap:.65rem}
+.stack dt{font:.76rem var(--mono);color:var(--soft)}
+.stack dd{color:var(--paper);font-size:1rem}
+.stack b{color:var(--accent);font-weight:400;margin:0 .15rem}
+.contact{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:clamp(2rem,5vw,6rem)}
+.contact-copy h2{font-size:clamp(2.8rem,4.15vw,4.4rem)}
+.contact-methods{justify-self:end;width:min(100%,28.8rem);position:relative}
+.email-row{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:0 0 .85rem;border-bottom:1px solid #42443a}
+.email-link{font-size:clamp(.95rem,1.25vw,1.18rem);letter-spacing:-.018em;overflow-wrap:anywhere}
+.email-link .icon{color:var(--accent)}
+.social-row{display:flex;align-items:center;gap:1.55rem;margin-top:1rem;color:#d3d3c8;font-size:.95rem}
+.copy-status{position:absolute;right:0;top:-1.4rem;color:var(--accent);font:.75rem var(--mono)}
+.site-footer{border-top:1px solid var(--rule);color:var(--soft)}
+.footer-inner{min-height:4.5rem;display:flex;align-items:center;gap:1rem;font:.77rem var(--mono)}
+.footer-brand{font:600 1rem Rubik,Arial,sans-serif;color:var(--paper);letter-spacing:-.04em}
+.footer-brand .brand-mark{width:1.17rem;height:1.17rem}
+.top-link{margin-left:auto;font:inherit}
+.project-dialog{color:var(--paper);background:#191a16;border:1px solid #494a41;border-radius:.85rem;padding:0;width:min(39rem,calc(100% - 2.2rem));max-height:min(88dvh,52rem);overflow:auto;overscroll-behavior:contain;box-shadow:0 24px 110px #0008}
+.project-dialog::backdrop{background:#060705bd;backdrop-filter:blur(6px)}
+.project-dialog[open]{animation:dialog-in .25s ease-out}
+@keyframes dialog-in{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+.dialog-close{position:sticky;top:.75rem;float:right;margin:.75rem .75rem -3.3rem 0;z-index:3;background:#141710de;border-color:#ffffff3d;color:#fff}
+.detail-cover,.lab-display{position:relative;height:clamp(10rem,23vh,14rem);overflow:hidden}
+.detail-cover img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 52%}
+.detail-body{padding:clamp(1.35rem,3.5vw,2.15rem)}
+.detail-body .category{margin:0 0 .6rem}
+.detail-body h2{font-size:clamp(2.5rem,6vw,3.8rem);margin-bottom:.7rem}
+.detail-body h3{font-size:1.12rem;letter-spacing:-.03em;margin:1.25rem 0 .45rem}
+.milestones{margin:0 0 1.35rem;padding-left:1.2rem;color:#d4d4c7}
+.milestones li::marker{color:var(--accent)}
+.lab-readout{position:absolute;left:1rem;bottom:.8rem;color:#e3dafa;background:#1a142ad9;border:1px solid #ffffff29;padding:.35rem .53rem;border-radius:.25rem;font-size:.72rem}
+.wave-controls{border:0;padding:0;margin:1.15rem 0 .9rem}
+.wave-controls legend,.pitch-label{font:.82rem var(--mono);color:#c6c6b9}
+.wave-options{display:flex;gap:.45rem;margin-top:.52rem}
+.wave-options button{border:1px solid #46473f;border-radius:.35rem;padding:.4rem .85rem;font-size:.85rem}
+.wave-options button[aria-pressed=true]{border-color:#cab5ff;background:#322b43;color:#ebddff}
+.pitch-label{display:flex;justify-content:space-between;align-items:center}
+#pitch{width:100%;accent-color:#c2a7ff;margin:.55rem 0 1rem;cursor:pointer}
+#audio-status{font-size:.83rem;color:#ccc3e5}
+html.motion-on .enter{animation:enter .65s cubic-bezier(.2,.7,.25,1) both;animation-delay:var(--delay,0ms)}
+html.motion-on .title-line&gt;span,html.motion-on .title-line&gt;em{animation:title-in .8s cubic-bezier(.2,.8,.25,1) both}
+html.motion-on .title-line&gt;em{animation-delay:.07s}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes title-in{from{opacity:0;transform:translateY(.18em) rotate(1.4deg);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
+html.motion-on .reveal.seen{animation:enter .58s cubic-bezier(.23,.69,.35,1) both;animation-delay:var(--delay,0ms)}
+html.motion-off{scroll-behavior:auto}
+html.motion-off *,html.motion-off *::before,html.motion-off *::after{animation-play-state:paused!important;transition-duration:0s!important}
+html.motion-off .enter,html.motion-off .title-line&gt;*,html.motion-off .reveal,html.motion-off dialog[open]{animation:none!important;opacity:1!important;transform:none!important}
+html.motion-off .bars i{transform:scaleY(.3);animation:none!important}
+@media(prefers-reduced-motion:reduce){html:not(.motion-on){scroll-behavior:auto}html:not(.motion-on) *,html:not(.motion-on) *::before,html:not(.motion-on) *::after{animation:none!important;transition:none!important}}
+@media(min-width:1600px){.hero-inner{padding-block:4.1rem}.object-space{aspect-ratio:1.5}}
+@media(max-width:1000px){.header-inner{gap:1.2rem}.main-nav{gap:1.4rem}.header-actions{gap:1rem}.hero-inner{gap:1rem}.intro{font-size:1rem}.hero-actions{margin-top:1.25rem}.object-caption{flex-wrap:wrap;gap:.4rem}.drag-hint{font-size:.71rem;padding-left:.5rem}.stack dl&gt;div{grid-template-columns:1fr;gap:.3rem}.stack dl&gt;div{padding:.68rem 0}}
+@media(max-width:760px){:root{--gutter:clamp(1.25rem,5vw,2.1rem)}html{scroll-padding-top:1rem}.header-inner{height:4rem;display:flex;justify-content:space-between}.brand{font-size:1.17rem}.brand-mark{width:1.72rem;height:1.7rem}.header-actions{margin-left:auto}.motion-toggle{font-size:.72rem}.contact-link{display:none}.menu-toggle{display:inline-grid;border-radius:.4rem;width:2.45rem;height:2.45rem}.main-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#141510;border-bottom:1px solid var(--rule);padding:.35rem var(--gutter) .8rem;box-shadow:0 18px 24px #0004}.main-nav.open{display:grid;gap:0}.main-nav a,.main-nav .nav-contact{display:block;padding:.69rem 0;font-size:1rem}.hero-inner{grid-template-columns:1fr;gap:.9rem;padding-top:2.45rem;padding-bottom:1.35rem}.eyebrow{font-size:.74rem}.hero-copy{max-width:36rem}h1{font-size:clamp(4.65rem,14.4vw,7rem);margin:.95rem 0 1.12rem}.intro{max-width:33rem;line-height:1.54}.hero-actions{margin-top:1.1rem}.button{min-height:2.72rem}.stage{width:min(100%,34rem);justify-self:center}.object-space{aspect-ratio:1.65}.stage-corners{inset:6% 2% 15%}.object-caption{margin-top:-.15rem;margin-inline:2%;gap:.65rem}.object-label{font-size:.69rem}.drag-hint{font-size:.7rem}.ticker{min-height:2.9rem}.section{padding-block:3.2rem}.projects{grid-template-columns:1fr 1fr;gap:1rem}.poster{height:clamp(10rem,25vw,16rem)}.poster-label{top:.6rem;left:.6rem;font-size:.68rem}.poster-action{right:.6rem;bottom:.6rem}.about-grid,.contact{grid-template-columns:1fr;gap:2.35rem}.about-section{padding-block:3.25rem}.stack{padding:1.3rem 0 0;border:0;border-top:1px solid var(--rule)}.stack dl&gt;div{display:grid;grid-template-columns:1fr 1.6fr}.contact-methods{justify-self:start;width:min(100%,32rem)}}
+@media(max-width:520px){.projects{grid-template-columns:1fr;gap:2.15rem}.poster{height:auto;aspect-ratio:1.67}.section-heading{margin-bottom:1.25rem}.text-link{font-size:.82rem;padding:.38rem .65rem}h2{font-size:2.65rem}.hero-actions{gap:.65rem}.object-space{aspect-ratio:1.46}.stage{margin-top:.25rem}.object-caption{min-height:1.85rem}.poster-label{top:.75rem;left:.75rem}.contact-copy h2{max-width:20rem}.footer-inner{min-height:4.2rem;gap:.7rem}.category{margin-top:.85rem}.hero-inner{gap:.8rem}.email-row{gap:.4rem}.copy-button{width:2.2rem;height:2.2rem}.email-link{font-size:.9rem}.lab-body .category{font-size:.68rem}}
+@media(max-width:360px){.header-actions{gap:.65rem}.motion-toggle span:last-child{display:none}.button{padding-inline:.8rem}.eyebrow{font-size:.69rem}.drag-hint{border:0;padding:0}.object-caption{gap:.45rem}.materials{gap:0}.swatch{width:1.4rem}.stack dl&gt;div{grid-template-columns:1fr;gap:.15rem}.email-link .icon{display:none}}
+
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-2">
+      <summary><span>work.css</span><small>Project gallery</small></summary>
+      <div class="file-inside"><p>The WELLsync feature, the two new project illustrations and the Python repository list use this stylesheet. In index.html, each project link points either to its own local page or to the verified GitHub repository.</p>
+        <button class="copy-file" type="button" aria-label="Copy work.css">Copy entire file</button>
+        <pre tabindex="0"><code data-path="work.css">/* WELLsync and the extra project cards on the homepage. */
+h1 .italic-line { font-size: 1.04em; }
+.well-feature { display: grid; grid-template-columns: 1.12fr 1fr; margin-bottom: clamp(2rem, 3.2vw, 3.4rem); border: 1px solid #354740; border-radius: .65rem; background: #15251f; overflow: hidden; }
+.well-copy { align-self: center; padding: clamp(1.5rem, 3.2vw, 3.3rem); }
+.well-copy .category { margin: 0 0 .8rem; color: #b2caba; }
+.well-copy h3 { font-size: clamp(2.7rem, 4.4vw, 4.8rem); color: #f0f1dd; letter-spacing: -.075em; }
+.well-copy h3 em { font: italic 1.12em/.9 var(--serif); color: #b9e9c5; }
+.well-copy &gt; p:not(.category) { color: #ccd3c5; max-width: 33rem; margin-top: .65rem; }
+.feature-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; margin-top: 1.2rem; }
+.well-primary { min-height: 2.65rem; background: #b9e9c5; color: #11231a; }
+.well-primary:hover { background: #d5f4d6; }
+.feature-code, .repo-source { display: inline-flex; align-items: center; gap: .45rem; color: #d5ddce; font-size: .9rem; }
+.feature-code:hover, .repo-source:hover, .repo-item a:hover { color: var(--accent); }
+.well-art { display: grid; place-items: center; overflow: hidden; min-height: 14rem; background: radial-gradient(ellipse, #74956645, transparent 67%), repeating-linear-gradient(90deg, transparent 0 26px,#7caa901d 27px,transparent 28px), repeating-linear-gradient(0deg,transparent 0 26px,#7caa901d 27px,transparent 28px), #172c23; mask-image: linear-gradient(90deg,transparent,#000 18%); }
+.well-field { position: relative; width: min(70%,17rem); aspect-ratio: 1; transform: rotate(-15deg) skewX(-7deg); }
+.well-field i { position: absolute; inset: var(--inset,1%); border-radius: 50%; background: conic-gradient(from var(--start,7deg), transparent 0deg 30deg,var(--ring,#aee7ba) 35deg 285deg,transparent 290deg 308deg,var(--ring,#aee7ba) 312deg); mask-image: radial-gradient(closest-side, transparent 80%,#000 81%); animation: orbit-stroke var(--time,55s) linear infinite; }
+.well-field i:nth-child(2) { --inset: 13%; --ring: #60ac87; --start: 90deg; --time: 42s; animation-direction: reverse; }
+.well-field i:nth-child(3) { --inset: 25%; --ring: #edc37e; --start: 175deg; --time: 48s; }
+.well-field span { position: absolute; inset: 0; display: grid; place-items: center; color: #d2eed6; font: italic clamp(1.6rem,3vw,3rem)/1 var(--serif); }
+@keyframes orbit-stroke { to { transform: rotate(360deg); } }
+.projects { row-gap: clamp(2.1rem,3.5vw,3.8rem); }
+.sort-studio-cover { display: grid; place-items: center; background: radial-gradient(ellipse at 57% 40%,#31493d,#14231e 72%); }
+.bar-cover-art { display: flex; align-items: end; gap: 1.7%; width: 78%; height: 57%; transform: skewY(-6deg); border-bottom: 1px solid #d3ffb387; }
+.bar-cover-art i { flex: 1; height: var(--height); background: linear-gradient(0deg,#478877,#bceba6); border-radius: 2px 2px 0 0; transform-origin: bottom; }
+.bar-cover-art i:nth-child(4n) { background: linear-gradient(0deg,#bf6444,#ffc094); }
+.sort-studio-cover:hover i { animation: sort-pulse .7s ease-in-out; animation-delay: calc(var(--order) * 16ms); }
+@keyframes sort-pulse { 45% { transform: scaleY(.7); } }
+.palette-press-cover { display: grid; place-items: center; background: radial-gradient(ellipse at 50% 55%,#684153,#3c2639 77%); }
+.palette-cover-art { display: flex; width: 77%; height: 61%; transform: rotate(-7deg); }
+.palette-cover-art i { flex: 1; position: relative; margin-left: -1%; border-radius: .35rem; background: var(--chip); box-shadow: -3px 5px 10px #24142155; transform: translateY(calc((var(--order) - 2) * 6%)); transition: transform .3s; }
+.palette-cover-art span { position: absolute; bottom: 7%; left: 9%; font: .7rem var(--mono); color: #291b2b; }
+.palette-cover-art i:last-child span { color: #edcbdb; }
+.palette-press-cover:hover i { transform: translateY(calc((var(--order) - 2) * 12%)); }
+.repo-shelf { margin-top: clamp(3.4rem,5.5vw,6rem); }
+.repo-heading { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.15rem; }
+.repo-heading h3 { font-size: clamp(1.9rem,3.1vw,3.5rem); letter-spacing: -.06em; }
+.repo-heading em { font: italic 1.14em/1 var(--serif); color: var(--accent); }
+.repo-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(1.4rem,4.5vw,5rem); }
+.repo-item { border-top: 1px solid var(--rule); padding: 1.2rem 0 1.4rem; }
+.repo-tech { color: var(--soft); font: .78rem var(--mono); }
+.repo-item h4 { font-size: clamp(1.35rem,2.2vw,2rem); letter-spacing: -.045em; line-height: 1.1; margin: .45rem 0; }
+.repo-item &gt; p:not(.repo-tech) { color: var(--muted); max-width: 35rem; }
+.repo-source { margin-top: .7rem; padding-block: .15rem; }
+@media (max-width: 760px) { .well-feature { grid-template-columns: 1.25fr .75fr; } .well-field { width: 90%; } .palette-cover-art span { font-size: .63rem; } }
+@media (max-width: 560px) { .well-feature, .repo-list { grid-template-columns: 1fr; } .well-art { order: -1; height: 10rem; min-height: 0; mask-image: linear-gradient(0deg,transparent,#000 15%); } .well-field { width: 9rem; } }
+</code></pre>
+      </div>
+    </details>
+<p class="check"><b>Check your work.</b> Double-click <code>index.html</code>. You should see “My Portfolio.”, your bio and the copper sculpture. The sculpture’s still image also works before you add its script.</p></section>
+<section id="interaction"><h2>3. Connect the motion and sound</h2>
+<p>Create these scripts in the same folder as the homepage. The <code>defer</code> attributes in the HTML run them in order after the page structure is available.</p>
+<details class="file" id="source-3">
+      <summary><span>form.js</span><small>Interactive sculpture</small></summary>
+      <div class="file-inside"><p>makeKnot builds rings of points around a curve. drawKnot projects them onto the canvas. The mounting code handles dragging, materials and whether animations should run.</p>
+        <button class="copy-file" type="button" aria-label="Copy form.js">Copy entire file</button>
+        <pre tabindex="0"><code data-path="form.js">const Trefoil = (() =&gt; {
+  // A swept tube along a (2,3) torus knot, lit and projected into a 2D canvas.
+  const TAU = Math.PI * 2;
+  const REST = { pitch: -0.32, yaw: 0.33, roll: -0.48 };
+
+  const colors = {
+    copper: [[56, 21, 14], [143, 47, 20], [235, 88, 32], [255, 152, 77], [255, 222, 161]],
+    iris: [[35, 23, 55], [89, 58, 136], [155, 117, 225], [204, 175, 255], [247, 229, 255]],
+    silver: [[27, 34, 31], [66, 84, 78], [140, 163, 154], [202, 217, 207], [248, 250, 237]]
+  };
+
+  function palette(stops) {
+    return Array.from({ length: 128 }, (_, i) =&gt; {
+      const t = i / 127 * (stops.length - 1);
+      const a = Math.min(stops.length - 2, Math.floor(t));
+      const rgb = stops[a].map((c, j) =&gt; Math.round(c + (stops[a + 1][j] - c) * (t - a)));
+      return 'rgb(' + rgb.join(',') + ')';
+    });
+  }
+  const materials = Object.fromEntries(Object.entries(colors).map(([key, stops]) =&gt; [
+    key, { rib: palette(stops), core: palette(stops.map((rgb, i) =&gt; rgb.map(c =&gt; Math.round(c * (.18 + i * .038))))) }
+  ]));
+
+  function makeKnot(rings = 192, sides = 32) {
+    const count = rings * sides;
+    const vertices = new Float32Array(count * 6);
+    const screen = new Float32Array(count * 6);
+    const faces = [];
+    for (let i = 0; i &lt; rings; i++) {
+      const t = TAU * i / rings;
+      const a = 1.38 + .66 * Math.cos(3 * t);
+      const dr = -1.98 * Math.sin(3 * t);
+      const c = Math.cos(2 * t), s = Math.sin(2 * t);
+      const center = [a * c, a * s, .81 * Math.sin(3 * t)];
+      const tx = dr * c - 2 * a * s, ty = dr * s + 2 * a * c, tz = 2.43 * Math.cos(3 * t);
+      const L = Math.hypot(tx, ty, tz), flat = Math.hypot(tx, ty);
+      const ax = -ty / flat, ay = tx / flat;
+      const bx = -tz / L * ay, by = tz / L * ax, bz = (tx * ay - ty * ax) / L;
+      const radius = .465 + .027 * Math.cos(3 * t + .65);
+      for (let j = 0; j &lt; sides; j++) {
+        const theta = TAU * j / sides;
+        const u = Math.cos(theta), v = Math.sin(theta);
+        const nx = ax * u + bx * v, ny = ay * u + by * v, nz = bz * v;
+        const k = (i * sides + j) * 6;
+        vertices.set([center[0] + radius * nx, center[1] + radius * ny, center[2] + radius * nz, nx, ny, nz], k);
+        const ni = (i + 1) % rings, nj = (j + 1) % sides;
+        faces.push({ a: k, b: (i * sides + nj) * 6, c: (ni * sides + nj) * 6, d: (ni * sides + j) * 6, z: 0 });
+      }
+    }
+    return { vertices, screen, faces, visible: [] };
+  }
+
+  function drawKnot(ctx, width, height, mesh, pose = REST, material = 'copper') {
+    const { vertices, screen, faces, visible } = mesh;
+    const cp = Math.cos(pose.pitch), sp = Math.sin(pose.pitch);
+    const cy = Math.cos(pose.yaw), sy = Math.sin(pose.yaw);
+    const cr = Math.cos(pose.roll), sr = Math.sin(pose.roll);
+    const m = [cr*cy-sr*sp*sy, -sr*cp, cr*sy+sr*sp*cy,
+               sr*cy+cr*sp*sy, cr*cp, sr*sy-cr*sp*cy,
+               -cp*sy, sp, cp*cy];
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (let k = 0; k &lt; vertices.length; k += 6) {
+      const x=vertices[k], y=vertices[k+1], z=vertices[k+2];
+      const nx=vertices[k+3], ny=vertices[k+4], nz=vertices[k+5];
+      const depth=m[6]*x+m[7]*y+m[8]*z;
+      const p=8.8/(8.8-depth);
+      const X=(m[0]*x+m[1]*y+m[2]*z)*p, Y=-(m[3]*x+m[4]*y+m[5]*z)*p;
+      screen[k]=X; screen[k+1]=Y; screen[k+2]=depth;
+      screen[k+3]=m[0]*nx+m[1]*ny+m[2]*nz;
+      screen[k+4]=m[3]*nx+m[4]*ny+m[5]*nz;
+      screen[k+5]=m[6]*nx+m[7]*ny+m[8]*nz;
+      minX=Math.min(minX,X);maxX=Math.max(maxX,X);
+      minY=Math.min(minY,Y);maxY=Math.max(maxY,Y);
+    }
+    const scale=Math.min(width*.92/(maxX-minX),height*.95/(maxY-minY));
+    const ox=(width-(maxX+minX)*scale)/2, oy=(height-(maxY+minY)*scale)/2;
+    for(let k=0;k&lt;screen.length;k+=6){screen[k]=screen[k]*scale+ox;screen[k+1]=screen[k+1]*scale+oy;}
+    visible.length=0;
+    for(const face of faces){
+      const {a,b,c,d}=face;
+      const facing=(screen[b]-screen[a])*(screen[c+1]-screen[a+1])-(screen[b+1]-screen[a+1])*(screen[c]-screen[a]);
+      if(facing&gt;0) continue;
+      face.z=(screen[a+2]+screen[b+2]+screen[c+2]+screen[d+2])*.25;
+      visible.push(face);
+    }
+    visible.sort((a,b)=&gt;a.z-b.z);
+    ctx.clearRect(0,0,width,height);
+    const paint=materials[material] || materials.copper;
+    ctx.lineJoin='round';
+    for(const {a,b,c,d,z} of visible){
+      const nx=(screen[a+3]+screen[c+3])*.5, ny=(screen[a+4]+screen[c+4])*.5, nz=(screen[a+5]+screen[c+5])*.5;
+      const diffuse=Math.max(0,-.49*nx+.68*ny+.55*nz);
+      const reflection=Math.max(0,-.27*nx+.4*ny+.875*nz);
+      const rim=Math.pow(1-Math.max(0,nz),2);
+      const light=Math.min(1,Math.max(0,.18+.52*diffuse+.27*Math.pow(reflection,12)+.14*rim+.038*z));
+      const tone=Math.round(light*127);
+      const ax=screen[a],ay=screen[a+1],bx=screen[b],by=screen[b+1],cx=screen[c],cy=screen[c+1],dx=screen[d],dy=screen[d+1];
+      ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.lineTo(cx,cy);ctx.lineTo(dx,dy);ctx.closePath();
+      ctx.fillStyle=paint.core[tone];ctx.fill();
+      // Fill the raised part of each copper rib. Its projected width narrows naturally at crossings.
+      const f=.37;
+      ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);
+      ctx.lineTo(bx+(cx-bx)*f,by+(cy-by)*f);ctx.lineTo(ax+(dx-ax)*f,ay+(dy-ay)*f);ctx.closePath();
+      ctx.fillStyle=paint.rib[tone];ctx.fill();
+    }
+  }
+
+  function mountKnot(canvas, shouldMove) {
+    const ctx=canvas.getContext('2d',{alpha:true});
+    if(!ctx) return;
+    const mesh=makeKnot(matchMedia('(max-width: 600px)').matches?148:192,32);
+    const pose={...REST};
+    let material='copper', active=true, drag=null, last=0, elapsed=0, yaw=0, pitch=0, frame=0, dirty=true;
+    const still=canvas.previousElementSibling;
+    function request(){if(!frame)frame=requestAnimationFrame(render);}
+    function render(now){
+      frame=0;
+      if(!active||document.hidden){last=0;return;}
+      const running=shouldMove()&amp;&amp;!drag;
+      if(running &amp;&amp; last &amp;&amp; now-last&lt;36 &amp;&amp; !dirty){request();return;}
+      const step=last?Math.min((now-last)/1000,.09):0;
+      if(running)elapsed+=step;
+      last=now;
+      if(running||dirty){
+        const rect=canvas.getBoundingClientRect();
+        if(!rect.width||!rect.height)return;
+        const dpr=Math.min(devicePixelRatio||1,1.65);
+        const w=Math.round(rect.width*dpr),h=Math.round(rect.height*dpr);
+        if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
+        pose.pitch=REST.pitch+pitch+.11*Math.sin(elapsed*.27);
+        pose.yaw=REST.yaw+yaw+.6*Math.sin(elapsed*.17);
+        pose.roll=REST.roll+.065*Math.sin(elapsed*.25);
+        drawKnot(ctx,w,h,mesh,pose,material);
+        still.style.visibility='hidden';
+        dirty=false;
+      }
+      if(running)request();
+    }
+    const refresh=()=&gt;{dirty=true;last=0;request();};
+    new ResizeObserver(refresh).observe(canvas);
+    new IntersectionObserver(([entry])=&gt;{active=entry.isIntersecting;if(active)refresh();},{rootMargin:'35px'}).observe(canvas);
+    document.addEventListener('visibilitychange',refresh);
+    window.addEventListener('portfolio-motion',refresh);
+    canvas.addEventListener('pointerdown',e=&gt;{
+      if(e.button!==0)return;
+      drag={x:e.clientX,y:e.clientY,yaw,pitch};
+      canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');refresh();
+    });
+    canvas.addEventListener('pointermove',e=&gt;{
+      if(!drag)return;
+      yaw=drag.yaw+(e.clientX-drag.x)*.012;
+      pitch=drag.pitch+(e.clientY-drag.y)*.011;
+      refresh();
+    });
+    function release(){if(!drag)return;drag=null;canvas.classList.remove('dragging');refresh();}
+    canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',release);
+    canvas.addEventListener('keydown',e=&gt;{
+      const turns={ArrowLeft:[-.18,0],ArrowRight:[.18,0],ArrowUp:[0,-.18],ArrowDown:[0,.18]};
+      if(e.key==='Home'){elapsed=0;yaw=0;pitch=0;}
+      else if(turns[e.key]){yaw+=turns[e.key][0];pitch+=turns[e.key][1];}
+      else return;
+      e.preventDefault();refresh();
+    });
+    const swatches=document.querySelectorAll('[data-material]');
+    swatches.forEach(button=&gt;button.addEventListener('click',()=&gt;{
+      material=button.dataset.material;
+      swatches.forEach(s=&gt;s.setAttribute('aria-pressed',String(s===button)));
+      refresh();
+    }));
+    refresh();
+  }
+  return { mount: mountKnot };
+})();
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-4">
+      <summary><span>signal.js</span><small>Signal Lab</small></summary>
+      <div class="file-inside"><p>The waveform picker and pitch slider change the drawing. Pressing Play sound starts a browser oscillator. Closing the dialog stops the sound.</p>
+        <button class="copy-file" type="button" aria-label="Copy signal.js">Copy entire file</button>
+        <pre tabindex="0"><code data-path="signal.js">const SignalLab = (() =&gt; {
+  const TAU=Math.PI*2;
+
+  function sampleWave(wave, phase) {
+    const sine=Math.sin(phase);
+    if(wave==='triangle')return Math.asin(sine)*2/Math.PI;
+    if(wave==='square')return Math.tanh(5*sine);
+    return sine;
+  }
+
+  function paintSignal(ctx,w,h,{time=0,wave='sine',frequency=220}={}) {
+    ctx.clearRect(0,0,w,h);
+    const background=ctx.createLinearGradient(0,0,w,h);
+    background.addColorStop(0,'#171327');background.addColorStop(.5,'#221831');background.addColorStop(1,'#14131e');
+    ctx.fillStyle=background;ctx.fillRect(0,0,w,h);
+    const halo=ctx.createRadialGradient(w*.59,h*.47,0,w*.59,h*.47,w*.6);
+    halo.addColorStop(0,'rgba(119,79,167,.19)');halo.addColorStop(1,'rgba(17,14,25,0)');
+    ctx.fillStyle=halo;ctx.fillRect(0,0,w,h);
+    const ink=ctx.createLinearGradient(w*.05,h,w*.94,0);
+    ink.addColorStop(0,'#6c55cb');ink.addColorStop(.33,'#a994ff');ink.addColorStop(.63,'#d8adff');ink.addColorStop(1,'#f0bef7');
+    const rows=46, columns=110;
+    ctx.lineWidth=Math.max(.8,w*.00155);ctx.lineJoin='round';ctx.strokeStyle=ink;
+    for(let row=0;row&lt;rows;row++){
+      const v=row/(rows-1);
+      ctx.globalAlpha=.32+.66*Math.sin(Math.PI*(.1+.77*v));
+      ctx.beginPath();
+      for(let i=0;i&lt;=columns;i++){
+        const u=i/columns;
+        const amplitude=Math.pow(Math.sin(Math.PI*u),.77)*Math.pow(Math.sin(Math.PI*(.11+.77*v)),.8);
+        const phase=(u*1.38+v*.57)*TAU+time*.66+.8;
+        const ripple=sampleWave(wave,phase*(.64+.36*frequency/220))*.66+.34*Math.sin(phase*.65-v*3.6);
+        const x=w*(.025+.79*u+.16*v);
+        const y=h*(.67-.42*v-.12*u)-ripple*amplitude*h*.38;
+        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+  }
+
+  function mountSignal(shouldMove) {
+    const preview=document.querySelector('#signal-preview'), screen=document.querySelector('#signal-screen');
+    const dialog=document.querySelector('#signal-dialog'), slider=document.querySelector('#pitch');
+    const previewCtx=preview.getContext('2d'), screenCtx=screen.getContext('2d');
+    const output=document.querySelector('#pitch-value'), readout=document.querySelector('#lab-readout');
+    const sound=document.querySelector('#sound-toggle'), audioStatus=document.querySelector('#audio-status');
+    const choices=[...document.querySelectorAll('[data-wave]')];
+    let wave='sine', hz=220, audio=null, gain=null, osc=null, soundRequest=0;
+    let previewVisible=false, frame=0, last=0, elapsed=0, dirty=true;
+    function draw(canvas,ctx,state){
+      if(!ctx)return;
+      const rect=canvas.getBoundingClientRect();
+      if(!rect.width||!rect.height)return;
+      const ratio=Math.min(window.devicePixelRatio||1,1.6);
+      const w=Math.round(rect.width*ratio),h=Math.round(rect.height*ratio);
+      if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
+      paintSignal(ctx,w,h,state);
+    }
+    function request(){if(!frame)frame=requestAnimationFrame(render);}
+    function render(now){
+      frame=0;
+      if(document.hidden||(!previewVisible&amp;&amp;!dialog.open)){last=0;return;}
+      const running=shouldMove();
+      if(running &amp;&amp; last &amp;&amp; now-last&lt;48 &amp;&amp; !dirty){request();return;}
+      if(running&amp;&amp;last)elapsed+=Math.min((now-last)/1000,.09);
+      last=now;
+      if(previewVisible&amp;&amp;!dialog.open)draw(preview,previewCtx,{time:elapsed*.48});
+      if(dialog.open)draw(screen,screenCtx,{time:elapsed,wave,frequency:hz});
+      dirty=false;
+      if(running)request();
+    }
+    function refresh(){dirty=true;last=0;request();}
+    new IntersectionObserver(([entry])=&gt;{previewVisible=entry.isIntersecting;refresh();}).observe(preview);
+    const resize=new ResizeObserver(refresh);resize.observe(preview);resize.observe(screen);
+    window.addEventListener('portfolio-motion',refresh);
+    document.addEventListener('visibilitychange',()=&gt;{if(document.hidden)stopSound();refresh();});
+    function update(){
+      output.value=hz+' Hz';readout.textContent=wave.toUpperCase()+' / '+hz+' HZ';
+      choices.forEach(b=&gt;b.setAttribute('aria-pressed',String(b.dataset.wave===wave)));
+      if(osc){osc.type=wave;osc.frequency.setTargetAtTime(hz,audio.currentTime,.02);}
+      refresh();
+    }
+    choices.forEach(b=&gt;b.addEventListener('click',()=&gt;{wave=b.dataset.wave;update();}));
+    slider.addEventListener('input',()=&gt;{hz=Number(slider.value);update();});
+    function stopSound(){
+      soundRequest++;
+      if(osc){
+        const oldOsc=osc, oldGain=gain, oldAudio=audio;
+        const t=oldAudio.currentTime;
+        oldGain.gain.cancelScheduledValues(t);oldGain.gain.setTargetAtTime(.0001,t,.012);
+        oldOsc.onended=()=&gt;{oldOsc.disconnect();oldGain.disconnect();};
+        oldOsc.stop(t+.065);osc=null;gain=null;
+      }
+      sound.setAttribute('aria-pressed','false');sound.querySelector('span').textContent='Play sound';
+    }
+    sound.addEventListener('click',async()=&gt;{
+      if(osc||sound.getAttribute('aria-busy')==='true'){stopSound();sound.removeAttribute('aria-busy');return;}
+      const attempt=++soundRequest;
+      const Audio=window.AudioContext||window.webkitAudioContext;
+      if(!Audio){audioStatus.textContent='Audio playback is unavailable in this browser.';return;}
+      sound.setAttribute('aria-busy','true');
+      try{
+        audio=audio||new Audio();
+        if(audio.state!=='running')await audio.resume();
+        if(attempt!==soundRequest||!dialog.open)return;
+        gain=audio.createGain();osc=audio.createOscillator();
+        osc.type=wave;osc.frequency.value=hz;
+        gain.gain.setValueAtTime(.0001,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.075,audio.currentTime+.06);
+        osc.connect(gain);gain.connect(audio.destination);osc.start();
+        sound.setAttribute('aria-pressed','true');sound.querySelector('span').textContent='Stop sound';audioStatus.textContent='';
+      }catch{audioStatus.textContent='Your browser could not start audio playback.';stopSound();}
+      finally{sound.removeAttribute('aria-busy');}
+    });
+    dialog.addEventListener('portfolio-open',refresh);
+    dialog.addEventListener('close',()=&gt;{stopSound();refresh();});
+  }
+  return { mount: mountSignal };
+})();
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-5">
+      <summary><span>app.js</span><small>Homepage controls</small></summary>
+      <div class="file-inside"><p>This connects the navigation, animation switch and dialogs to the page. A button’s data-open value matches a dialog ID. The final calls attach the sculpture and synthesizer after their scripts load.</p>
+        <button class="copy-file" type="button" aria-label="Copy app.js">Copy entire file</button>
+        <pre tabindex="0"><code data-path="app.js">'use strict';
+
+const root=document.documentElement;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const motion=document.querySelector('#motion-toggle');
+let preference;
+try{preference=localStorage.getItem('kr-motion');}catch{}
+let moving=preference===null||preference===undefined?!reduced.matches:preference==='on';
+
+function setMotion(value,save){
+  moving=value;
+  root.classList.toggle('motion-on',value);root.classList.toggle('motion-off',!value);
+  motion.setAttribute('aria-pressed',String(value));
+  motion.setAttribute('aria-label',value?'Pause animations':'Resume animations');
+  motion.title=motion.getAttribute('aria-label');
+  document.querySelector('#motion-text').textContent=value?'Motion on':'Motion off';
+  if(save){preference=value?'on':'off';try{localStorage.setItem('kr-motion',preference);}catch{}}
+  window.dispatchEvent(new Event('portfolio-motion'));
+}
+motion.addEventListener('click',()=&gt;setMotion(!moving,true));
+reduced.addEventListener('change',()=&gt;{if(preference==null)setMotion(!reduced.matches,false);});
+setMotion(moving,false);
+
+const menu=document.querySelector('#menu-toggle'), nav=document.querySelector('#main-nav');
+function setMenu(open){
+  nav.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));
+  menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  menu.querySelector('use').setAttribute('href',open?'#i-close':'#i-menu');
+}
+menu.addEventListener('click',()=&gt;setMenu(!nav.classList.contains('open')));
+nav.querySelectorAll('a').forEach(a=&gt;a.addEventListener('click',()=&gt;setMenu(false)));
+document.addEventListener('keydown',e=&gt;{if(e.key==='Escape'&amp;&amp;nav.classList.contains('open')){setMenu(false);menu.focus();}});
+document.addEventListener('pointerdown',e=&gt;{if(!e.target.closest('.site-header'))setMenu(false);});
+matchMedia('(min-width: 761px)').addEventListener('change',()=&gt;setMenu(false));
+
+const observer=new IntersectionObserver(entries=&gt;{
+  entries.forEach(entry=&gt;{if(entry.isIntersecting){entry.target.classList.add('seen');observer.unobserve(entry.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=&gt;observer.observe(el));
+
+const track=document.querySelector('.ticker-track'), group=track.firstElementChild;
+const totalGroups=4;
+for(let i=1;i&lt;totalGroups;i++){const clone=group.cloneNode(true);clone.setAttribute('aria-hidden','true');track.append(clone);}
+track.style.setProperty('--ticker-shift','-'+100/totalGroups+'%');track.classList.add('ready');
+
+document.querySelectorAll('[data-open]').forEach(button=&gt;{
+  button.addEventListener('click',()=&gt;{
+    const dialog=document.getElementById(button.dataset.open);
+    if(dialog.open)return;
+    dialog.showModal();document.body.style.overflow='hidden';dialog.scrollTop=0;
+    dialog.dispatchEvent(new Event('portfolio-open'));
+  });
+});
+document.querySelectorAll('dialog').forEach(dialog=&gt;{
+  dialog.querySelectorAll('[data-close]').forEach(button=&gt;button.addEventListener('click',()=&gt;dialog.close()));
+  dialog.addEventListener('click',e=&gt;{
+    if(e.target!==dialog)return;
+    const r=dialog.getBoundingClientRect();
+    if(e.clientX&lt;r.left||e.clientX&gt;r.right||e.clientY&lt;r.top||e.clientY&gt;r.bottom)dialog.close();
+  });
+  dialog.addEventListener('close',()=&gt;{document.body.style.overflow='';});
+});
+
+const copy=document.querySelector('#copy-email'), status=document.querySelector('#copy-status');
+const email=document.querySelector('.email-link').getAttribute('href').slice(7);
+let statusTimer;
+copy.addEventListener('click',async()=&gt;{
+  let copied=false;
+  try{await navigator.clipboard.writeText(email);copied=true;}catch{
+    const box=document.createElement('textarea');box.value=email;box.setAttribute('readonly','');
+    box.style.cssText='position:fixed;top:0;left:-2000px';document.body.append(box);box.select();
+    try{copied=document.execCommand('copy');}catch{}box.remove();copy.focus();
+  }
+  status.textContent=copied?'Email copied':'Select the email address to copy it.';
+  clearTimeout(statusTimer);statusTimer=setTimeout(()=&gt;{status.textContent='';},3500);
+});
+
+Trefoil.mount(document.querySelector('#sculpture'),()=&gt;moving);
+SignalLab.mount(()=&gt;moving);
+</code></pre>
+      </div>
+    </details>
+<p class="check"><b>Check your work.</b> Refresh the browser, drag the sculpture and switch its color. Open Signal Lab, select Triangle and press Play sound. Close the experiment to stop the tone.</p></section>
+<section id="demos"><h2>4. Add the two project pages</h2>
+<p>Create <code>projects</code> inside your portfolio folder. Inside it, create <code>sort-studio</code> and <code>palette-press</code>. Put the shared stylesheet in <code>projects</code>, then create the files inside each project’s folder.</p>
+<details class="file" id="source-6">
+      <summary><span>projects/tools.css</span><small>Shared demo styles</small></summary>
+      <div class="file-inside"><p>This styles the demo controls, sorting bars and palette tiles. Both projects load it using ../tools.css.</p>
+        <button class="copy-file" type="button" aria-label="Copy projects/tools.css">Copy entire file</button>
+        <pre tabindex="0"><code data-path="projects/tools.css">/* Shared layout for the two standalone demos. All assets are local. */
+.tool-page { --tint: #b7e3b2; --panel: #181d19; }
+.tool-page.palette-tool { --tint: #d8b9ec; --panel: #201b21; }
+.tool-nav { min-height: 4.7rem; display: flex; justify-content: space-between; align-items: center; }
+.back-work, .quiet-button { border: 1px solid #54554e; border-radius: .45rem; padding: .57rem .9rem; font-size: .93rem; background: #ffffff04; min-height: 2.7rem; }
+.back-work:hover, .quiet-button:hover { background: #ffffff10; border-color: #9e9f93; }
+.tool-main { max-width: 67rem; padding-block: clamp(2.3rem,5.6vw,5rem); }
+.tool-intro h1 { font-size: clamp(3.75rem,7.7vw,7.2rem); letter-spacing: -.065em; margin: .85rem 0 .7rem; line-height: 1; }
+.tool-intro em { color: var(--tint); }
+.tool-intro &gt; p:last-child, .method-note p, .palette-export p { color: var(--muted); max-width: 46rem; line-height: 1.57; }
+.tool-intro { margin-bottom: clamp(1.4rem,3.3vw,2.9rem); }
+.tool-panel { background: var(--panel); border: 1px solid #3b413a; border-radius: .75rem; padding: clamp(1rem,2.4vw,2rem); }
+.control-row, .actions, .playback, .palette-export { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; }
+.control-row { align-items: end; margin-bottom: 1.3rem; }
+.control { display: grid; gap: .35rem; font: .83rem var(--mono); color: #d2d1c8; }
+.control select { font: .95rem Rubik,sans-serif; padding: .56rem 2.15rem .56rem .7rem; color: var(--paper); min-height: 2.7rem; background-color: #20241f; border: 1px solid #585b52; border-radius: .35rem; appearance: none; background-image: linear-gradient(45deg,transparent 50%,#c7c8b9 50%),linear-gradient(135deg,#c7c8b9 50%,transparent 50%); background-position: calc(100% - 16px) center,calc(100% - 11px) center; background-size: 5px 5px; background-repeat: no-repeat; }
+.control select:focus-visible { outline: 2px solid var(--tint); outline-offset: 2px; }
+.end-control { margin-left: auto; }
+.tool-button { min-width: 5rem; min-height: 2.7rem; color: #151915; background: var(--tint); border-radius: .4rem; padding: .58rem 1rem; font-weight: 500; }
+.tool-button:hover { filter: brightness(1.08); }
+.tool-button:disabled, .quiet-button:disabled { opacity: .43; }
+.sort-plot { height: clamp(13rem,24vw,20rem); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: clamp(3px,1vw,13px); padding: .7rem clamp(.5rem,2vw,1.4rem) .45rem; background: repeating-linear-gradient(0deg,transparent 0 23%,#93af9a25 23.5%,transparent 24%),linear-gradient(155deg,#273b31,#192820); border-radius: .38rem; }
+.bar-cell { min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: stretch; justify-content: end; gap: .25rem; }
+.bar-column { width: 100%; min-height: .25rem; border-radius: 3px 3px 0 0; background: linear-gradient(0deg,#45786c,#9cc8ab); transition: height .12s ease-out,background .12s; }
+.bar-cell[data-state=compare] .bar-column { background: linear-gradient(#f3c380,#ba895a); }
+.bar-cell[data-state=swap] .bar-column { background: linear-gradient(#ff966d,#bc6347); }
+.bar-cell[data-state=done] .bar-column { background: linear-gradient(#c3ee9b,#70b784); }
+.bar-number { text-align: center; color: #dddcd0; font: .82rem var(--mono); }
+.sort-readout { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; padding: 1.15rem .2rem; border-bottom: 1px solid #44483e; }
+.sort-readout div { display: grid; gap: .28rem; }
+.sort-readout span, .palette-feedback { font: .8rem var(--mono); color: #c8c9bc; }
+.sort-readout strong { font-size: clamp(1.15rem,2.4vw,1.65rem); line-height: 1.1; }
+.playback { justify-content: space-between; margin-top: 1.1rem; }
+#event-text { font-size: .94rem; color: #d6d7ca; }
+.method-note { margin: 1.5rem .2rem 0; }
+.method-note h2, .palette-export h2 { font-size: 1.35rem; letter-spacing: -.04em; margin-bottom: .4rem; }
+.palette-board { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); overflow: hidden; border-radius: .5rem; }
+.palette-tile { min-width: 0; height: clamp(11rem,20vw,16.5rem); display: flex; flex-direction: column; align-items: flex-start; justify-content: end; gap: .4rem; padding: clamp(.5rem,1.5vw,1.15rem); }
+.tile-hex { font: 500 clamp(.78rem,1.5vw,1.2rem)/1.25 var(--mono); }
+.lock-color { font: .84rem var(--mono); border: 1px solid currentColor; min-height: 2.55rem; padding: .3rem .7rem; border-radius: 3rem; }
+.lock-color[aria-pressed=true] { background: #ffffff32; }
+.palette-export { justify-content: space-between; margin: 1.5rem 0 .8rem; }
+.palette-export p { font-size: .91rem; }
+#css-output { background: #121311; color: #e4d6ec; width: 100%; resize: vertical; border: 1px solid #46453f; border-radius: .35rem; padding: .8rem 1rem; line-height: 1.45; font-family: var(--mono); }
+.palette-feedback { margin-top: .5rem; min-height: 1rem; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 560px) { .tool-nav { min-height: 4rem; } .end-control { margin-left: 0; } .tool-intro h1 { font-size: clamp(3.3rem,12vw,4.6rem); } .palette-board { grid-template-columns: 1fr; } .palette-tile { height: 3.9rem; flex-direction: row; align-items: center; justify-content: space-between; padding: .5rem 1rem; } .tile-hex { font-size: 1rem; } .sort-plot { gap: 4px; } .playback { align-items: start; gap: .9rem; } }
+@media (prefers-reduced-motion: reduce) { .bar-column { transition: none; } }
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-7">
+      <summary><span>projects/sort-studio/index.html</span><small>Sort Studio page</small></summary>
+      <div class="file-inside"><p>The HTML creates the controls and the chart container. It loads algorithms.js first so the playback script can call createSortTrace.</p>
+        <button class="copy-file" type="button" aria-label="Copy projects/sort-studio/index.html">Copy entire file</button>
+        <pre tabindex="0"><code data-path="projects/sort-studio/index.html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;meta name="description" content="Watch twelve numbers fall into order. Step through a comparison, or let the whole algorithm play."&gt;
+  &lt;title&gt;Sort Studio · Kaushik Raj&lt;/title&gt;
+  &lt;link rel="icon" href="../../assets/mark.png"&gt;
+  &lt;link rel="stylesheet" href="../../style.css"&gt;
+  &lt;link rel="stylesheet" href="../tools.css"&gt;
+  &lt;script defer src="algorithms.js"&gt;&lt;/script&gt;
+  &lt;script defer src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="tool-page sort-tool"&gt;
+&lt;a class="skip" href="#main"&gt;Skip to tool&lt;/a&gt;
+&lt;header class="site-header"&gt;&lt;div class="frame tool-nav"&gt;
+  &lt;a href="../../index.html" class="brand" aria-label="Kaushik Raj, portfolio home"&gt;&lt;span class="brand-mark" aria-hidden="true"&gt;&lt;/span&gt;&lt;span&gt;Kaushik Raj&lt;span class="ink-dot"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+  &lt;a href="../../index.html#work" class="back-work"&gt;Back to portfolio&lt;/a&gt;
+&lt;/div&gt;&lt;/header&gt;
+&lt;main class="frame tool-main" id="main"&gt;
+  &lt;header class="tool-intro"&gt;
+    &lt;p class="eyebrow"&gt;&lt;span class="accent-rule"&gt;&lt;/span&gt;Algorithm visualizer&lt;/p&gt;
+    &lt;h1&gt;Sort &lt;em&gt;Studio.&lt;/em&gt;&lt;/h1&gt;
+    &lt;p&gt;Watch twelve numbers fall into order. Step through a comparison, or let the whole algorithm play.&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;section class="tool-panel" aria-label="Sorting controls and visualization"&gt;
+    &lt;div class="control-row"&gt;
+      &lt;label class="control"&gt;Algorithm
+        &lt;select id="algorithm"&gt;&lt;option value="bubble"&gt;Bubble sort&lt;/option&gt;&lt;option value="insertion"&gt;Insertion sort&lt;/option&gt;&lt;option value="selection"&gt;Selection sort&lt;/option&gt;&lt;/select&gt;
+      &lt;/label&gt;
+      &lt;label class="control"&gt;Speed
+        &lt;select id="speed"&gt;&lt;option value="650"&gt;Slow&lt;/option&gt;&lt;option value="270" selected&gt;Normal&lt;/option&gt;&lt;option value="85"&gt;Fast&lt;/option&gt;&lt;/select&gt;
+      &lt;/label&gt;
+      &lt;button class="quiet-button end-control" id="shuffle" type="button"&gt;Shuffle numbers&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="sort-plot" id="bars" role="img" aria-label="Twelve values in their starting order"&gt;&lt;/div&gt;
+    &lt;div class="sort-readout"&gt;
+      &lt;div&gt;&lt;span&gt;Comparisons&lt;/span&gt;&lt;strong id="comparisons"&gt;0&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;Swaps&lt;/span&gt;&lt;strong id="swaps"&gt;0&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;Step&lt;/span&gt;&lt;strong id="step-number"&gt;0&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="playback"&gt;
+      &lt;div class="actions"&gt;&lt;button type="button" class="tool-button" id="play"&gt;Play&lt;/button&gt;
+        &lt;button type="button" class="quiet-button" id="step"&gt;Step once&lt;/button&gt;
+        &lt;button type="button" class="quiet-button" id="restart"&gt;Restart&lt;/button&gt;&lt;/div&gt;
+      &lt;p id="event-text"&gt;Ready to sort.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="visually-hidden" id="sort-announcement" role="status"&gt;&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;aside class="method-note" aria-labelledby="method-name"&gt;&lt;h2 id="method-name"&gt;Bubble sort&lt;/h2&gt;&lt;p id="method-note"&gt;&lt;/p&gt;&lt;/aside&gt;
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-8">
+      <summary><span>projects/sort-studio/algorithms.js</span><small>The three algorithms</small></summary>
+      <div class="file-inside"><p>Each comparison or swap adds a snapshot to an array. The original input is copied so you can run different algorithms on the same numbers.</p>
+        <button class="copy-file" type="button" aria-label="Copy projects/sort-studio/algorithms.js">Copy entire file</button>
+        <pre tabindex="0"><code data-path="projects/sort-studio/algorithms.js">'use strict';
+
+// Each snapshot stores the array and the counters for exactly one visible step.
+function createSortTrace(input, method) {
+  const values = input.slice();
+  const frames = [];
+  let comparisons = 0;
+  let swaps = 0;
+
+  function record(kind, pair, message) {
+    frames.push({ values: values.slice(), kind, pair, message, comparisons, swaps });
+  }
+
+  function compare(left, right) {
+    comparisons++;
+    record('compare', [left, right], 'Compare ' + values[left] + ' and ' + values[right] + '.');
+    return values[left] - values[right];
+  }
+
+  function swap(left, right) {
+    const a = values[left];
+    const b = values[right];
+    [values[left], values[right]] = [b, a];
+    swaps++;
+    record('swap', [left, right], 'Swap ' + a + ' and ' + b + '.');
+  }
+
+  record('start', [], 'Ready to sort this array.');
+  if (method === 'bubble') {
+    for (let end = values.length - 1; end &gt; 0; end--) {
+      let changed = false;
+      for (let left = 0; left &lt; end; left++) {
+        if (compare(left, left + 1) &gt; 0) {
+          swap(left, left + 1);
+          changed = true;
+        }
+      }
+      if (!changed) break;
+    }
+  } else if (method === 'insertion') {
+    for (let next = 1; next &lt; values.length; next++) {
+      let position = next;
+      while (position &gt; 0 &amp;&amp; compare(position - 1, position) &gt; 0) {
+        swap(position - 1, position);
+        position--;
+      }
+    }
+  } else if (method === 'selection') {
+    for (let first = 0; first &lt; values.length - 1; first++) {
+      let smallest = first;
+      for (let cursor = first + 1; cursor &lt; values.length; cursor++) {
+        if (compare(cursor, smallest) &lt; 0) smallest = cursor;
+      }
+      if (smallest !== first) swap(first, smallest);
+    }
+  } else {
+    throw new Error('Unknown sorting algorithm');
+  }
+  record('done', [], 'In order! ' + comparisons + ' comparisons and ' + swaps + ' swaps.');
+  return frames;
+}
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-9">
+      <summary><span>projects/sort-studio/app.js</span><small>Sorting playback</small></summary>
+      <div class="file-inside"><p>The play button advances through snapshots on a timer. Step once advances a single frame. Changing the algorithm resets the counters and keeps the starting numbers.</p>
+        <button class="copy-file" type="button" aria-label="Copy projects/sort-studio/app.js">Copy entire file</button>
+        <pre tabindex="0"><code data-path="projects/sort-studio/app.js">'use strict';
+
+(() =&gt; {
+  const numbers = [7, 3, 11, 2, 9, 5, 12, 1, 10, 4, 8, 6];
+  const descriptions = {
+    bubble: 'Compare neighbors and swap the pair when the larger value is on the left. Each pass carries a large value to the end.',
+    insertion: 'Start with one value in order. Move each new value left past its larger neighbors until it fits.',
+    selection: 'Find the smallest value in the remaining group and swap it into the next open position.'
+  };
+  const byId = (id) =&gt; document.getElementById(id);
+  const chart = byId('bars');
+  const method = byId('algorithm');
+  const speed = byId('speed');
+  const play = byId('play');
+  const step = byId('step');
+  const announcement = byId('sort-announcement');
+
+  const bars = numbers.map(() =&gt; {
+    const cell = document.createElement('div');
+    const column = document.createElement('span');
+    const label = document.createElement('span');
+    cell.className = 'bar-cell';
+    column.className = 'bar-column';
+    label.className = 'bar-number';
+    cell.append(column, label);
+    chart.append(cell);
+    return { cell, column, label };
+  });
+
+  let trace = [];
+  let index = 0;
+  let timer = null;
+
+  function paint() {
+    const frame = trace[index];
+    frame.values.forEach((value, position) =&gt; {
+      const bar = bars[position];
+      bar.column.style.height = (12 + value * 6.6) + '%';
+      const isActive = frame.pair.includes(position);
+      bar.cell.dataset.state = frame.kind === 'done' ? 'done' : isActive ? frame.kind : 'idle';
+      bar.label.textContent = value;
+    });
+    chart.setAttribute('aria-label', 'Array from left to right: ' + frame.values.join(', '));
+    byId('comparisons').textContent = frame.comparisons;
+    byId('swaps').textContent = frame.swaps;
+    byId('step-number').textContent = index + ' / ' + (trace.length - 1);
+    byId('event-text').textContent = frame.message;
+    step.disabled = frame.kind === 'done';
+    play.textContent = timer !== null ? 'Pause' : frame.kind === 'done' ? 'Replay' : 'Play';
+  }
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  function advance(manual = false) {
+    if (index &lt; trace.length - 1) index++;
+    if (index === trace.length - 1) stop();
+    paint();
+    if (manual || index === trace.length - 1) announcement.textContent = trace[index].message;
+  }
+
+  function start() {
+    stop();
+    if (index === trace.length - 1) index = 0;
+    timer = setInterval(advance, Number(speed.value));
+    paint();
+  }
+
+  function reset() {
+    stop();
+    index = 0;
+    trace = createSortTrace(numbers, method.value);
+    byId('method-name').textContent = method.selectedOptions[0].textContent;
+    byId('method-note').textContent = descriptions[method.value];
+    announcement.textContent = '';
+    paint();
+  }
+
+  play.addEventListener('click', () =&gt; {
+    if (timer === null) start();
+    else { stop(); paint(); }
+  });
+  step.addEventListener('click', () =&gt; { stop(); advance(true); });
+  byId('restart').addEventListener('click', reset);
+  byId('shuffle').addEventListener('click', () =&gt; {
+    for (let end = numbers.length - 1; end &gt; 0; end--) {
+      const other = Math.floor(Math.random() * (end + 1));
+      [numbers[other], numbers[end]] = [numbers[end], numbers[other]];
+    }
+    reset();
+    announcement.textContent = 'Numbers shuffled.';
+  });
+  method.addEventListener('change', reset);
+  speed.addEventListener('change', () =&gt; { if (timer !== null) start(); });
+  document.addEventListener('visibilitychange', () =&gt; {
+    if (document.hidden) { stop(); paint(); }
+  });
+  reset();
+})();
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-10">
+      <summary><span>projects/palette-press/index.html</span><small>Palette Press page</small></summary>
+      <div class="file-inside"><p>This page contains the harmony selector, five-color board and a text area for the exported CSS.</p>
+        <button class="copy-file" type="button" aria-label="Copy projects/palette-press/index.html">Copy entire file</button>
+        <pre tabindex="0"><code data-path="projects/palette-press/index.html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;meta name="description" content="Find five colors that work together. Lock the ones you like, shuffle the rest, and take the CSS with you."&gt;
+  &lt;title&gt;Palette Press · Kaushik Raj&lt;/title&gt;
+  &lt;link rel="icon" href="../../assets/mark.png"&gt;
+  &lt;link rel="stylesheet" href="../../style.css"&gt;
+  &lt;link rel="stylesheet" href="../tools.css"&gt;
+  &lt;script defer src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="tool-page palette-tool"&gt;
+&lt;a class="skip" href="#main"&gt;Skip to tool&lt;/a&gt;
+&lt;header class="site-header"&gt;&lt;div class="frame tool-nav"&gt;
+  &lt;a href="../../index.html" class="brand" aria-label="Kaushik Raj, portfolio home"&gt;&lt;span class="brand-mark" aria-hidden="true"&gt;&lt;/span&gt;&lt;span&gt;Kaushik Raj&lt;span class="ink-dot"&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+  &lt;a href="../../index.html#work" class="back-work"&gt;Back to portfolio&lt;/a&gt;
+&lt;/div&gt;&lt;/header&gt;
+&lt;main class="frame tool-main" id="main"&gt;
+  &lt;header class="tool-intro"&gt;
+    &lt;p class="eyebrow"&gt;&lt;span class="accent-rule"&gt;&lt;/span&gt;Color palette generator&lt;/p&gt;
+    &lt;h1&gt;Palette &lt;em&gt;Press.&lt;/em&gt;&lt;/h1&gt;
+    &lt;p&gt;Find five colors that work together. Lock the ones you like, shuffle the rest, and take the CSS with you.&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;section class="tool-panel" aria-label="Palette editor"&gt;
+    &lt;div class="control-row"&gt;
+      &lt;label class="control"&gt;Color harmony
+        &lt;select id="harmony"&gt;&lt;option value="analogous"&gt;Analogous&lt;/option&gt;&lt;option value="complementary"&gt;Complementary&lt;/option&gt;&lt;option value="triadic"&gt;Triadic&lt;/option&gt;&lt;/select&gt;
+      &lt;/label&gt;
+      &lt;button type="button" id="generate" class="tool-button end-control"&gt;Shuffle palette&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="swatches" class="palette-board" aria-label="Five editable color swatches"&gt;&lt;/div&gt;
+    &lt;div class="palette-export"&gt;
+      &lt;div&gt;&lt;h2&gt;Your CSS&lt;/h2&gt;&lt;p&gt;Use these variables for backgrounds, text, borders, or buttons.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="actions"&gt;&lt;button type="button" id="copy-css" class="quiet-button"&gt;Copy CSS&lt;/button&gt;&lt;button type="button" id="download-css" class="quiet-button"&gt;Download CSS&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;textarea id="css-output" aria-label="Generated CSS variables" rows="7" readonly spellcheck="false"&gt;&lt;/textarea&gt;
+    &lt;p class="palette-feedback" id="palette-status" role="status"&gt;&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-11">
+      <summary><span>projects/palette-press/app.js</span><small>Palette generator</small></summary>
+      <div class="file-inside"><p>generate picks a base hue and applies the selected harmony. Locked colors keep their existing hex values. The CSS copy and download buttons use the same generated text.</p>
+        <button class="copy-file" type="button" aria-label="Copy projects/palette-press/app.js">Copy entire file</button>
+        <pre tabindex="0"><code data-path="projects/palette-press/app.js">'use strict';
+
+(() =&gt; {
+  const byId = (id) =&gt; document.getElementById(id);
+  const harmonies = {
+    analogous: [-34, -17, 0, 17, 34],
+    complementary: [0, 12, -12, 172, 188],
+    triadic: [0, 112, 128, 232, 248]
+  };
+  const initial = ['#F2C197', '#FF7852', '#C9ADED', '#AF5477', '#4F324C'];
+  const key = 'kr-palette-press-v1';
+  const hexPattern = /^#[0-9a-f]{6}$/i;
+  const harmony = byId('harmony');
+  const board = byId('swatches');
+  const output = byId('css-output');
+  const status = byId('palette-status');
+  let colors = initial.slice();
+  let locked = initial.map(() =&gt; false);
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(key));
+    if (saved &amp;&amp; Array.isArray(saved.colors) &amp;&amp; saved.colors.length === 5 &amp;&amp;
+        saved.colors.every(color =&gt; typeof color === 'string' &amp;&amp; hexPattern.test(color)) &amp;&amp;
+        Array.isArray(saved.locked) &amp;&amp; saved.locked.length === 5 &amp;&amp;
+        saved.locked.every(value =&gt; typeof value === 'boolean') &amp;&amp;
+        Object.hasOwn(harmonies, saved.harmony)) {
+      colors = saved.colors;
+      locked = saved.locked;
+      harmony.value = saved.harmony;
+    }
+  } catch { /* A fresh palette also works when storage is unavailable. */ }
+
+  function toHex(h, s, l) {
+    const hue = ((h % 360) + 360) % 360;
+    const a = s * Math.min(l, 1 - l);
+    function channel(n) {
+      const k = (n + hue / 30) % 12;
+      const rgb = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+      return Math.round(255 * rgb).toString(16).padStart(2, '0');
+    }
+    return ('#' + channel(0) + channel(8) + channel(4)).toUpperCase();
+  }
+
+  function ink(hex) {
+    const rgb = hex.slice(1).match(/../g).map(value =&gt; {
+      const c = parseInt(value, 16) / 255;
+      return c &lt;= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4;
+    });
+    const luminance = .2126 * rgb[0] + .7152 * rgb[1] + .0722 * rgb[2];
+    return luminance &gt; .179 ? '#11110F' : '#FFFFFF';
+  }
+
+  const tiles = colors.map((_, index) =&gt; {
+    const tile = document.createElement('div');
+    tile.className = 'palette-tile';
+    const code = document.createElement('span');
+    code.className = 'tile-hex';
+    const lock = document.createElement('button');
+    lock.type = 'button';
+    lock.className = 'lock-color';
+    lock.addEventListener('click', () =&gt; {
+      locked[index] = !locked[index];
+      paint();
+      status.textContent = 'Color ' + (index + 1) + (locked[index] ? ' locked.' : ' unlocked.');
+    });
+    tile.append(code, lock);
+    board.append(tile);
+    return { tile, code, lock };
+  });
+
+  function paint() {
+    colors.forEach((color, i) =&gt; {
+      const { tile, code, lock } = tiles[i];
+      tile.style.backgroundColor = color;
+      tile.style.color = ink(color);
+      code.textContent = color;
+      lock.textContent = locked[i] ? 'Locked' : 'Lock';
+      lock.setAttribute('aria-label', (locked[i] ? 'Unlock' : 'Lock') + ' color ' + (i + 1));
+      lock.setAttribute('aria-pressed', String(locked[i]));
+    });
+    output.value = ':root {\n' + colors.map((color, i) =&gt; '  --color-' + (i + 1) + ': ' + color + ';').join('\n') + '\n}';
+    byId('generate').disabled = locked.every(Boolean);
+    try { localStorage.setItem(key, JSON.stringify({ colors, locked, harmony: harmony.value })); } catch {}
+  }
+
+  function generate() {
+    if (locked.every(Boolean)) {
+      status.textContent = 'Unlock a color to shuffle the palette.';
+      paint();
+      return;
+    }
+    const hue = 360 * Math.random();
+    const offsets = harmonies[harmony.value];
+    const levels = [.8, .65, .71, .47, .29];
+    colors = colors.map((color, i) =&gt; locked[i] ? color :
+      toHex(hue + offsets[i], .46 + Math.random() * .33, levels[i]));
+    paint();
+    status.textContent = 'New palette ready.';
+  }
+
+  byId('generate').addEventListener('click', generate);
+  harmony.addEventListener('change', generate);
+  byId('copy-css').addEventListener('click', async () =&gt; {
+    let copied = false;
+    try { await navigator.clipboard.writeText(output.value); copied = true; }
+    catch {
+      output.focus();
+      output.select();
+      try { copied = document.execCommand('copy'); } catch {}
+    }
+    status.textContent = copied ? 'CSS copied.' : 'CSS selected. Press Ctrl+C or Command+C to copy.';
+  });
+  byId('download-css').addEventListener('click', () =&gt; {
+    const file = new Blob([output.value + '\n'], { type: 'text/css;charset=utf-8' });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'palette.css';
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() =&gt; URL.revokeObjectURL(url), 2000);
+    status.textContent = 'Created palette.css.';
+  });
+  paint();
+})();
+</code></pre>
+      </div>
+    </details>
+<p class="check"><b>Check your work.</b> From Selected work, open Sort Studio and press Step once. Its comparison counter should increase to 1. In Palette Press, lock the first color and shuffle. Its hex code should stay the same while the unlocked colors change.</p></section>
+<section id="preview"><h2>5. Run it from VS Code and make your first edit</h2>
+<p>Create a folder named <code>.vscode</code> inside the project and save this file in it. Open <b>Run and Debug</b>, select <b>Portfolio in Edge</b> or <b>Portfolio in Chrome</b>, and press <kbd>F5</kbd>. Choose a browser installed on your PC.</p>
+<details class="file" id="source-12">
+      <summary><span>.vscode/launch.json</span><small>VS Code preview</small></summary>
+      <div class="file-inside"><p>F5 starts a browser at the homepage inside your open workspace. Choose the Edge or Chrome configuration to use the browser installed on your computer.</p>
+        <button class="copy-file" type="button" aria-label="Copy .vscode/launch.json">Copy entire file</button>
+        <pre tabindex="0"><code data-path=".vscode/launch.json">{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "msedge",
+      "request": "launch",
+      "name": "Portfolio in Edge",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Portfolio in Chrome",
+      "file": "${workspaceFolder}/index.html"
+    }
+  ]
+}
+</code></pre>
+      </div>
+    </details>
+<p>In the root <code>index.html</code>, press <kbd>Ctrl+F</kbd> and search for <code>class="intro enter"</code>. Change one sentence in your bio, save, then refresh your browser. To change the orange accent, find <code>--accent</code> in <code>style.css</code>. To change the heading later, edit both its visible text and its <code>aria-label</code> so screen readers say the same thing.</p>
+<p>If you prefer a local URL, open <b>Terminal → New Terminal</b>. With Python installed on Windows, run the following from the folder containing <code>index.html</code>. Open <code>http://127.0.0.1:5500</code> in your browser. Press <kbd>Ctrl+C</kbd> in the terminal to stop it.</p>
+<pre><code>py -m http.server 5500 --bind 127.0.0.1</code></pre>
+</section>
+<section id="github"><h2>6. Publish the project to your GitHub</h2>
+<p>The folder containing <code>index.html</code> will be the top level of your repository. Create these three files there before the first commit.</p>
+<details class="file" id="source-13">
+      <summary><span>vercel.json</span><small>Vercel settings</small></summary>
+      <div class="file-inside"><p>The project root contains the finished HTML, so this tells Vercel to serve that folder and skip package installation and compilation.</p>
+        <button class="copy-file" type="button" aria-label="Copy vercel.json">Copy entire file</button>
+        <pre tabindex="0"><code data-path="vercel.json">{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": ".",
+  "headers": [
+    {
+      "source": "/Kaushik-Raj-Portfolio.zip",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Kaushik-Raj-Portfolio.zip\""
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-14">
+      <summary><span>.vercelignore</span><small>Vercel upload exclusions</small></summary>
+      <div class="file-inside"><p>This keeps local editor settings, dependencies and private configuration out of the upload. The portfolio and its download files are included.</p>
+        <button class="copy-file" type="button" aria-label="Copy .vercelignore">Copy entire file</button>
+        <pre tabindex="0"><code data-path=".vercelignore">.git/
+.gitignore
+.vscode/
+.vercel/
+node_modules/
+.env
+.env.*
+README.md
+
+</code></pre>
+      </div>
+    </details>
+<details class="file" id="source-15">
+      <summary><span>.gitignore</span><small>Files Git skips</small></summary>
+      <div class="file-inside"><p>This file keeps local Vercel settings, dependency folders and environment files out of your commits. The project artwork and fonts belong in the repository.</p>
+        <button class="copy-file" type="button" aria-label="Copy .gitignore">Copy entire file</button>
+        <pre tabindex="0"><code data-path=".gitignore"># Files generated on your computer
+.vercel/
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+</code></pre>
+      </div>
+    </details>
+<p>Install <a href="https://git-scm.com/downloads/win">Git for Windows</a> if you have never used Git on this PC, then restart VS Code.</p>
+<ol><li>Open <b>Source Control</b> with <kbd>Ctrl+Shift+G</kbd> and select <b>Initialize Repository</b>.</li>
+<li>If Git asks for an author, open <b>Terminal → New Terminal</b> and run the two commands below. You can use your GitHub no-reply email in the second command if you prefer.</li></ol>
+<pre><code>git config user.name "Kaushik Raj"
+git config user.email "contact.kaushikraj.cse@gmail.com"</code></pre>
+<ol start="3"><li>In Source Control, click <b>+</b> beside <b>Changes</b> to stage all files. Type <b>Add my portfolio</b> in the message box and click <b>Commit</b>.</li>
+<li>Press <kbd>Ctrl+Shift+P</kbd>, type <b>Publish to GitHub</b> and run that command. Complete the browser sign-in as <b>Kaushik-Raj10</b>.</li>
+<li>Set the repository name to <code>kaushik-raj-portfolio</code>. Choose <b>Public</b> to let others read the source, or <b>Private</b> to limit access.</li>
+<li>When VS Code finishes, click <b>Open on GitHub</b>. Look for <code>index.html</code>, <code>assets/</code> and <code>projects/</code> at the top level.</li></ol>
+<p class="check"><b>Send another change.</b> Edit a sentence in your bio, save, stage, write a commit message and select <b>Commit</b>, then <b>Sync Changes</b> or <b>Push</b>. Refresh your repository on GitHub to find that commit.</p></section>
+<section id="deploy"><h2>7. Deploy from GitHub to Vercel</h2>
+<p>If you already own the portfolio project in Vercel, open <b>Project → Settings → Git → Connect Git Repository</b>, select <code>Kaushik-Raj10/kaushik-raj-portfolio</code>, then push your next commit. Your existing production URL will receive the update.</p>
+<p>For a new project, open <a href="https://vercel.com/new">New Project on Vercel</a>. Under <b>Import Git Repository</b>, find <code>kaushik-raj-portfolio</code> and click <b>Import</b>. If the repository is missing, use the GitHub access selector and grant Vercel access to this repository.</p>
+<p>Choose <b>Other</b> for Framework Preset if asked, use the repository root <code>./</code>, leave the build command empty and set the output directory to <code>.</code>. Click <b>Deploy</b>. Once it says <b>Ready</b>, open the production domain and add it to your repository’s <b>About → Website</b> field. Future pushes to the production branch update this site.</p>
+<h3>Deploy from your terminal</h3>
+<p>You can also send these files directly from VS Code. The deployable folder is the same one that contains your root <code>index.html</code>.</p>
+<ol><li>Install the <a href="https://nodejs.org/en/download">LTS release of Node.js</a>. Reopen VS Code and choose <b>Terminal → New Terminal</b>. On Windows, use the terminal dropdown to choose <b>Command Prompt</b>.</li>
+<li>Run <code>node --version</code> and <code>npx --version</code>. Both should print a version. Then run the sign-in command below, approve npm’s installation prompt if it appears, and finish signing in to your Vercel account in the browser.</li></ol>
+<pre><code>npx vercel@latest login</code></pre>
+<p>After sign-in, run this in the same terminal.</p>
+<pre><code>npx vercel@latest --prod</code></pre>
+<table><thead><tr><th>During setup</th><th>Choose</th></tr></thead><tbody>
+<tr><td>Account or scope</td><td>Your Vercel account or the team that should own the site.</td></tr>
+<tr><td>Link an existing project?</td><td>For your first deployment, choose <b>No</b> to create a project. Choose <b>Yes</b> if you already own the Vercel project you want to update.</td></tr>
+<tr><td>Project name</td><td>Try <code>kaushik-raj-portfolio</code>, or another available name.</td></tr>
+<tr><td>Code location</td><td><code>./</code>, the current folder containing <code>index.html</code>.</td></tr>
+<tr><td>Build settings, if asked</td><td>Framework <b>Other</b>, empty build command, output directory <code>.</code>. The included configuration specifies these choices.</td></tr>
+</tbody></table>
+<p>When Vercel finishes, open the production domain it reports. You can also find that domain in the project dashboard. Share it in your hackathon profile or Instagram bio.</p>
+<p class="check"><b>Publish an edit.</b> Change your bio locally, save and run <code>npx vercel@latest --prod</code> from the same folder again. The linked Vercel project will serve the update at its production domain.</p></section>
+<section><h2>Offer the downloads on your own copy</h2><p>Create <code>downloads/index.html</code> using the code below. Put the ZIP you downloaded beside your root <code>index.html</code> before you publish. The extracted folder already includes <code>BUILD-GUIDE.html</code> and <code>Kaushik-Raj-All-Code.txt</code>.</p>
+<details class="file" id="source-16">
+      <summary><span>downloads/index.html</span><small>Download page</small></summary>
+      <div class="file-inside"><p>The ZIP button starts a download. Visitors can open the guide and plain-text source in their browser or save either file.</p>
+        <button class="copy-file" type="button" aria-label="Copy downloads/index.html">Copy entire file</button>
+        <pre tabindex="0"><code data-path="downloads/index.html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;meta name="theme-color" content="#10110f"&gt;
+  &lt;title&gt;Download the portfolio · Kaushik Raj&lt;/title&gt;
+  &lt;link rel="icon" href="../assets/mark.png" type="image/png"&gt;
+  &lt;style&gt;
+    @font-face {
+      font-family: Rubik;
+      src: url("../assets/rubik-regular.ttf") format("truetype");
+      font-display: swap;
+    }
+    :root {
+      color-scheme: dark;
+      background: #10110f;
+      color: #f3f1e9;
+      font: 100%/1.6 Rubik, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 43rem; margin: auto; padding: clamp(2rem, 7vw, 5.5rem) 1.4rem; }
+    a { color: #ffa57f; text-underline-offset: .2em; }
+    a:focus-visible { outline: .18rem solid #ffb59a; outline-offset: .3rem; }
+    h1 { margin: 1.4rem 0 .5rem; font-size: clamp(2.6rem, 9vw, 4.8rem); line-height: 1; letter-spacing: -.065em; }
+    p { max-width: 36rem; margin: .75rem 0; color: #c3c4b8; }
+    .button {
+      display: inline-block; margin: .8rem 0 1.4rem; padding: .8rem 1.2rem;
+      border-radius: .4rem; color: #191510; background: #ff895e;
+      text-decoration: none; font-weight: 700;
+    }
+    .button:hover { background: #ffab89; }
+    .resource { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding: 1.1rem 0; border-top: 1px solid #45463f; }
+    .resource a:first-child { color: #f3f1e9; }
+    .hint { margin-top: 1.3rem; font-size: .95rem; }
+    code { overflow-wrap: anywhere; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main&gt;
+    &lt;a href="../index.html"&gt;← Kaushik Raj’s portfolio&lt;/a&gt;
+    &lt;h1&gt;Get the source.&lt;/h1&gt;
+    &lt;p&gt;The complete portfolio, including the two project demos, artwork, fonts and VS Code setup.&lt;/p&gt;
+    &lt;a class="button" href="../Kaushik-Raj-Portfolio.zip" download="Kaushik-Raj-Portfolio.zip"&gt;Download the project ZIP&lt;/a&gt;
+    &lt;div class="resource"&gt;
+      &lt;a href="../BUILD-GUIDE.html"&gt;Open the step-by-step VS Code guide&lt;/a&gt;
+      &lt;a href="../BUILD-GUIDE.html" download="BUILD-GUIDE.html"&gt;Save guide&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="resource"&gt;
+      &lt;a href="../Kaushik-Raj-All-Code.txt"&gt;Read or copy all the code&lt;/a&gt;
+      &lt;a href="../Kaushik-Raj-All-Code.txt" download="Kaushik-Raj-All-Code.txt"&gt;Save code as TXT&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;p class="hint"&gt;On Windows, right-click the downloaded ZIP and choose &lt;strong&gt;Extract All&lt;/strong&gt;. In VS Code, open the extracted folder that contains &lt;code&gt;index.html&lt;/code&gt;.&lt;/p&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+      </div>
+    </details>
+</section>
+<section><h2>If something looks wrong</h2>
+<ul><li><b>Plain text or missing artwork.</b> Check that <code>style.css</code> and <code>assets/</code> sit beside the root <code>index.html</code>. Find the first missing file in your browser’s developer console.</li>
+<li><b>The demo link opens a missing page.</b> Check the lowercase names <code>projects/sort-studio/index.html</code> and <code>projects/palette-press/index.html</code>.</li>
+<li><b>F5 cannot find the browser.</b> Pick the configuration for the browser you have, or open the root HTML file directly.</li>
+<li><b>Vercel shows a 404.</b> Run the deploy command from the folder where you can see <code>index.html</code>, <code>assets</code> and <code>projects</code>. Use <code>.</code> as the output directory.</li></ul>
+<nav aria-label="Official references"><a href="https://code.visualstudio.com/docs/sourcecontrol/repos-remotes">Publish to GitHub</a><a href="https://vercel.com/docs/git/vercel-for-github">Vercel and GitHub</a><a href="https://code.visualstudio.com/docs/nodejs/browser-debugging">VS Code browser debugging</a><a href="https://vercel.com/docs/cli/login">Vercel login</a><a href="https://vercel.com/docs/cli/deploy">Vercel deploy</a><a href="https://vercel.com/docs/builds/configure-a-build">Vercel static hosting</a></nav></section>
+<div id="feedback" role="status"></div></main>
+<script>
+const feedback = document.getElementById('feedback');
+let clearMessage;
+document.querySelectorAll('.copy-file').forEach(button => button.addEventListener('click', async () => {
+  const element = button.parentElement.querySelector('pre code');
+  let copied = false;
+  try { await navigator.clipboard.writeText(element.textContent); copied = true; }
+  catch {
+    const selection = getSelection(), range = document.createRange();
+    range.selectNodeContents(element); selection.removeAllRanges(); selection.addRange(range);
+    try { copied = document.execCommand('copy'); } catch {}
+  }
+  feedback.textContent = copied ? 'Copied ' + element.dataset.path : 'Code selected. Press Ctrl+C or Command+C.';
+  clearTimeout(clearMessage);
+  clearMessage = setTimeout(() => { feedback.textContent = ''; }, 3800);
+}));
+</script></body></html>

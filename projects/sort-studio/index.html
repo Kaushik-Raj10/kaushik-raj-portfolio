@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Watch twelve numbers fall into order. Step through a comparison, or let the whole algorithm play.">
+  <title>Sort Studio · Kaushik Raj</title>
+  <link rel="icon" href="../../assets/mark.png">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../tools.css">
+  <script defer src="algorithms.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body class="tool-page sort-tool">
+<a class="skip" href="#main">Skip to tool</a>
+<header class="site-header"><div class="frame tool-nav">
+  <a href="../../index.html" class="brand" aria-label="Kaushik Raj, portfolio home"><span class="brand-mark" aria-hidden="true"></span><span>Kaushik Raj<span class="ink-dot">.</span></span></a>
+  <a href="../../index.html#work" class="back-work">Back to portfolio</a>
+</div></header>
+<main class="frame tool-main" id="main">
+  <header class="tool-intro">
+    <p class="eyebrow"><span class="accent-rule"></span>Algorithm visualizer</p>
+    <h1>Sort <em>Studio.</em></h1>
+    <p>Watch twelve numbers fall into order. Step through a comparison, or let the whole algorithm play.</p>
+  </header>
+  <section class="tool-panel" aria-label="Sorting controls and visualization">
+    <div class="control-row">
+      <label class="control">Algorithm
+        <select id="algorithm"><option value="bubble">Bubble sort</option><option value="insertion">Insertion sort</option><option value="selection">Selection sort</option></select>
+      </label>
+      <label class="control">Speed
+        <select id="speed"><option value="650">Slow</option><option value="270" selected>Normal</option><option value="85">Fast</option></select>
+      </label>
+      <button class="quiet-button end-control" id="shuffle" type="button">Shuffle numbers</button>
+    </div>
+    <div class="sort-plot" id="bars" role="img" aria-label="Twelve values in their starting order"></div>
+    <div class="sort-readout">
+      <div><span>Comparisons</span><strong id="comparisons">0</strong></div>
+      <div><span>Swaps</span><strong id="swaps">0</strong></div>
+      <div><span>Step</span><strong id="step-number">0</strong></div>
+    </div>
+    <div class="playback">
+      <div class="actions"><button type="button" class="tool-button" id="play">Play</button>
+        <button type="button" class="quiet-button" id="step">Step once</button>
+        <button type="button" class="quiet-button" id="restart">Restart</button></div>
+      <p id="event-text">Ready to sort.</p>
+    </div>
+    <p class="visually-hidden" id="sort-announcement" role="status"></p>
+  </section>
+  <aside class="method-note" aria-labelledby="method-name"><h2 id="method-name">Bubble sort</h2><p id="method-note"></p></aside>
+</main>
+</body>
+</html>

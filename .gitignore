@@ -1,0 +1,9 @@
+# Files generated on your computer
+.vercel/
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+

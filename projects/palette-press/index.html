@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find five colors that work together. Lock the ones you like, shuffle the rest, and take the CSS with you.">
+  <title>Palette Press · Kaushik Raj</title>
+  <link rel="icon" href="../../assets/mark.png">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../tools.css">
+  <script defer src="app.js"></script>
+</head>
+<body class="tool-page palette-tool">
+<a class="skip" href="#main">Skip to tool</a>
+<header class="site-header"><div class="frame tool-nav">
+  <a href="../../index.html" class="brand" aria-label="Kaushik Raj, portfolio home"><span class="brand-mark" aria-hidden="true"></span><span>Kaushik Raj<span class="ink-dot">.</span></span></a>
+  <a href="../../index.html#work" class="back-work">Back to portfolio</a>
+</div></header>
+<main class="frame tool-main" id="main">
+  <header class="tool-intro">
+    <p class="eyebrow"><span class="accent-rule"></span>Color palette generator</p>
+    <h1>Palette <em>Press.</em></h1>
+    <p>Find five colors that work together. Lock the ones you like, shuffle the rest, and take the CSS with you.</p>
+  </header>
+  <section class="tool-panel" aria-label="Palette editor">
+    <div class="control-row">
+      <label class="control">Color harmony
+        <select id="harmony"><option value="analogous">Analogous</option><option value="complementary">Complementary</option><option value="triadic">Triadic</option></select>
+      </label>
+      <button type="button" id="generate" class="tool-button end-control">Shuffle palette</button>
+    </div>
+    <div id="swatches" class="palette-board" aria-label="Five editable color swatches"></div>
+    <div class="palette-export">
+      <div><h2>Your CSS</h2><p>Use these variables for backgrounds, text, borders, or buttons.</p></div>
+      <div class="actions"><button type="button" id="copy-css" class="quiet-button">Copy CSS</button><button type="button" id="download-css" class="quiet-button">Download CSS</button></div>
+    </div>
+    <textarea id="css-output" aria-label="Generated CSS variables" rows="7" readonly spellcheck="false"></textarea>
+    <p class="palette-feedback" id="palette-status" role="status"></p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="Kaushik Raj’s developer portfolio. Explore an original rooftop courier game, interactive browser experiments, and the tools I build with.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kaushik Raj — Portfolio">
+  <meta property="og:description" content="Web apps, games, and interactive experiments by Kaushik Raj.">
+  <meta property="og:image" content="assets/portfolio-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Kaushik Raj — Portfolio</title>
+  <link rel="icon" href="assets/mark.png" type="image/png">
+  <link rel="preload" href="assets/rubik-bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/stix-italic.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="work.css">
+  <script defer src="form.js"></script>
+  <script defer src="signal.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="icon-bank" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-work" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><rect x="14.5" y="14.5" width="6" height="6" rx="1"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.75" y="4.75" width="18.5" height="14.5" rx="2.6"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20m-13-7 3-3 3 3m-6 14 3 3 3-3M5 9l-3 3 3 3m14-6 3 3-3 3"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .9a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54l-.02-2.08c-3.12.68-3.78-1.33-3.78-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.72.4-1.22.71-1.5-2.5-.29-5.12-1.25-5.12-5.55 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.1-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.6 1.55.22 2.7.1 2.98.72.8 1.16 1.79 1.16 3.02 0 4.31-2.63 5.25-5.13 5.54.4.35.76 1.03.76 2.07l-.01 3.08c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .9Z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="2"/><path d="M7.5 10.7v6.8M11 17.5v-6.8m0 3c.5-4.1 5.9-4.1 5.9 0v3.8"/><circle cx="7.5" cy="7.35" r=".9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 5V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v10a1 1 0 0 0 1 1h1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.2"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Zm0 0v5h5M8 13h8m-8 4h6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 8h18M3 16h18"/></symbol>
+</svg>
+<header class="site-header">
+  <div class="frame header-inner">
+    <a href="#top" class="brand" aria-label="Kaushik Raj, home"><span class="brand-mark" aria-hidden="true"></span><span>Kaushik Raj<span class="ink-dot">.</span></span></a>
+    <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#about">About</a><a href="#stack">Stack</a><a class="nav-contact" href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="true" aria-label="Pause animations" title="Pause animations">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="motion-text">Motion on</span>
+      </button>
+      <a class="contact-link" href="#contact"><svg class="icon"><use href="#i-mail"/></svg>Get in touch</a>
+      <button class="menu-toggle icon-button" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"><svg class="icon"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="frame hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow enter" style="--delay:0ms"><span class="accent-rule"></span>Creative developer</p>
+        <h1 id="hero-title" aria-label="My Portfolio."><span class="title-line"><span>My</span></span><span class="title-line italic-line"><em>Portfolio.</em></span></h1>
+        <p class="intro enter" style="--delay:130ms">I'm <strong>Kaushik Raj</strong>, a first-year B.Tech student at Ramaiah Institute of Technology. I build web apps, games, and interactive experiments.</p>
+        <div class="hero-actions enter" style="--delay:180ms">
+          <a class="button primary" href="#work"><svg class="icon"><use href="#i-work"/></svg>Explore my work</a>
+          <a class="button subtle" href="#about">About me</a>
+        </div>
+      </div>
+      <figure class="stage" id="stage">
+        <div class="stage-plot" aria-hidden="true"></div>
+        <div class="stage-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="object-space" id="object-space">
+          <img class="object-still" src="assets/trefoil.webp" alt="A three-dimensional knot sculpted from fine copper ribs" width="900" height="690" fetchpriority="high">
+          <canvas id="sculpture" tabindex="0" aria-label="Interactive trefoil sculpture. Drag to rotate, or use the arrow keys. Press Home to reset the view."></canvas>
+        </div>
+        <figcaption class="object-caption">
+          <span class="object-label"><i aria-hidden="true"></i>Trefoil study</span>
+          <span class="drag-hint"><svg class="icon"><use href="#i-drag"/></svg><span>Drag to rotate</span></span>
+          <span class="materials" role="group" aria-label="Sculpture material">
+            <button type="button" class="swatch" data-material="copper" aria-label="Copper material" title="Copper" aria-pressed="true" style="--swatch:#ff793f"></button>
+            <button type="button" class="swatch" data-material="iris" aria-label="Iris material" title="Iris" aria-pressed="false" style="--swatch:#b39af1"></button>
+            <button type="button" class="swatch" data-material="silver" aria-label="Silver material" title="Silver" aria-pressed="false" style="--swatch:#c9d4cc"></button>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  <div class="ticker" aria-label="Technologies">
+    <div class="ticker-track"><div class="ticker-group"><span>Python</span><span>React</span><span>Node.js</span><span>C/C++</span><span>Java</span><span>HTML</span><span>CSS</span><span>SQL</span></div></div>
+  </div>
+  <section id="work" class="frame section work" aria-labelledby="work-title">
+    <div class="section-heading reveal"><h2 id="work-title">Selected <em>work.</em></h2><a class="text-link" href="https://github.com/Kaushik-Raj10" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-github"/></svg>GitHub</a></div>
+    <article class="well-feature reveal" aria-labelledby="well-name">
+      <div class="well-copy">
+        <p class="category">Full-stack project <span>/</span> React + FastAPI</p>
+        <h3 id="well-name">WELL<em>sync</em></h3>
+        <p>A daily check-in for sleep, movement, hydration, and mood. Explore patterns in the dashboard and talk through your habits with the AI companion.</p>
+        <div class="feature-actions">
+          <a class="button well-primary" href="https://wellsync-eight.vercel.app/" target="_blank" rel="noopener noreferrer">Open live app</a>
+          <a class="feature-code" href="https://github.com/Kaushik-Raj10/WELLSYNC" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>View code</a>
+        </div>
+      </div>
+      <div class="well-art" aria-hidden="true"><div class="well-field"><i></i><i></i><i></i><span>W</span></div></div>
+    </article>
+    <div class="projects">
+      <article class="project reveal">
+        <button type="button" class="poster mail-poster" data-open="mail-dialog" aria-label="View Monsoon Mail project details">
+          <img src="assets/monsoon-mail.webp" alt="Concept artwork of a red letterbox on a rain-soaked rooftop" width="1200" height="800" loading="lazy">
+          <span class="poster-label"><i class="status-dot"></i>In development</span>
+          <span class="poster-action"><svg class="icon"><use href="#i-file"/></svg>Project notes</span>
+        </button>
+        <p class="category">GAME DEVELOPMENT <span>/</span> ROBLOX</p>
+        <h3><button class="project-title" type="button" data-open="mail-dialog">Monsoon Mail</button></h3>
+        <p class="project-description">A rooftop courier game about crossing bridges and earning delivery stamps.</p>
+      </article>
+      <article class="project reveal" style="--delay:75ms">
+        <button type="button" class="poster signal-poster" data-open="signal-dialog" aria-label="Open the interactive Signal Lab">
+          <canvas class="signal-art" aria-hidden="true" id="signal-preview"></canvas>
+          <span class="poster-label"><i class="live-dot"></i>Live experiment</span>
+          <span class="poster-action"><svg class="icon"><use href="#i-play"/></svg>Try it</span>
+        </button>
+        <p class="category">CREATIVE CODING <span>/</span> WEB AUDIO</p>
+        <h3><button class="project-title" type="button" data-open="signal-dialog">Signal Lab</button></h3>
+        <p class="project-description">A pocket-sized synthesizer. Shape a waveform, change its pitch, and hear the result.</p>
+      </article>
+      <article class="project reveal">
+        <a class="poster sort-studio-cover" href="projects/sort-studio/index.html" aria-label="Open Sort Studio">
+          <div class="bar-cover-art" aria-hidden="true"><i style="--height:32%;--order:0"></i><i style="--height:70%;--order:1"></i><i style="--height:39%;--order:2"></i><i style="--height:90%;--order:3"></i><i style="--height:52%;--order:4"></i><i style="--height:76%;--order:5"></i><i style="--height:25%;--order:6"></i><i style="--height:61%;--order:7"></i><i style="--height:100%;--order:8"></i><i style="--height:46%;--order:9"></i><i style="--height:84%;--order:10"></i><i style="--height:58%;--order:11"></i><i style="--height:37%;--order:12"></i><i style="--height:67%;--order:13"></i><i style="--height:95%;--order:14"></i><i style="--height:50%;--order:15"></i></div>
+          <span class="poster-action"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>Try it</span>
+        </a>
+        <p class="category">Algorithms <span>/</span> JavaScript</p>
+        <h3><a class="project-title" href="projects/sort-studio/index.html">Sort Studio</a></h3>
+        <p class="project-description">Follow an array one comparison at a time, then run a different sorting algorithm on the same numbers.</p>
+      </article>
+      <article class="project reveal">
+        <a class="poster palette-press-cover" href="projects/palette-press/index.html" aria-label="Open Palette Press">
+          <div class="palette-cover-art" aria-hidden="true"><i style="--chip:#F2C197;--order:0"><span>#F2C197</span></i><i style="--chip:#FF7852;--order:1"><span>#FF7852</span></i><i style="--chip:#C9ADED;--order:2"><span>#C9ADED</span></i><i style="--chip:#AF5477;--order:3"><span>#AF5477</span></i><i style="--chip:#4F324C;--order:4"><span>#4F324C</span></i></div>
+          <span class="poster-action"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>Try it</span>
+        </a>
+        <p class="category">Design tool <span>/</span> Color</p>
+        <h3><a class="project-title" href="projects/palette-press/index.html">Palette Press</a></h3>
+        <p class="project-description">Build a five-color palette, lock your favorites, and export the colors as CSS for your next project.</p>
+      </article>
+    </div>
+    <section class="repo-shelf" aria-labelledby="repo-title" id="github-projects">
+      <div class="repo-heading reveal">
+        <h3 id="repo-title">Python on <em>GitHub.</em></h3>
+        <a class="text-link" href="https://github.com/Kaushik-Raj10?tab=repositories" target="_blank" rel="noopener noreferrer">All repositories</a>
+      </div>
+      <div class="repo-list">
+        <article class="repo-item reveal">
+          <p class="repo-tech">Python · SQLite</p><h4><a href="https://github.com/Kaushik-Raj10/Expense-tracker" target="_blank" rel="noopener noreferrer">Expense Tracker</a></h4>
+          <p>Log expenses in a Tkinter desktop app and review totals by month or category. A Flask API uses the same database.</p>
+          <a class="repo-source" href="https://github.com/Kaushik-Raj10/Expense-tracker" target="_blank" rel="noopener noreferrer" aria-label="View Expense Tracker source on GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>View source</a>
+        </article>
+        <article class="repo-item reveal">
+          <p class="repo-tech">Python · Game</p><h4><a href="https://github.com/Kaushik-Raj10/Snake-Game" target="_blank" rel="noopener noreferrer">Snake–Water–Gun</a></h4>
+          <p>Pick snake, water, or gun in the terminal and play a round against the computer’s randomly chosen move.</p>
+          <a class="repo-source" href="https://github.com/Kaushik-Raj10/Snake-Game" target="_blank" rel="noopener noreferrer" aria-label="View Snake–Water–Gun source on GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>View source</a>
+        </article>
+        <article class="repo-item reveal">
+          <p class="repo-tech">Python · Game</p><h4><a href="https://github.com/Kaushik-Raj10/Number-Guessing-Game" target="_blank" rel="noopener noreferrer">Number Guessing Game</a></h4>
+          <p>Guess the hidden number across three difficulty levels. Hints tell you when you’re close, and each round has an attempt limit.</p>
+          <a class="repo-source" href="https://github.com/Kaushik-Raj10/Number-Guessing-Game" target="_blank" rel="noopener noreferrer" aria-label="View Number Guessing Game source on GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>View source</a>
+        </article>
+        <article class="repo-item reveal">
+          <p class="repo-tech">Python · CLI</p><h4><a href="https://github.com/Kaushik-Raj10/Password-Generator" target="_blank" rel="noopener noreferrer">Password Generator</a></h4>
+          <p>Choose a length and generate three strings using letters, numbers, and punctuation.</p>
+          <a class="repo-source" href="https://github.com/Kaushik-Raj10/Password-Generator" target="_blank" rel="noopener noreferrer" aria-label="View Password Generator source on GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>View source</a>
+        </article>
+      </div>
+    </section>
+  </section>
+  <section class="about-section" aria-labelledby="about-title">
+    <div class="frame about-grid">
+      <div class="bio reveal" id="about">
+        <p class="eyebrow"><span class="accent-rule"></span>About me</p>
+        <h2 id="about-title">Hi, I’m <em>Kaushik.</em></h2>
+        <p>I’m studying engineering at Ramaiah Institute of Technology. I like the part of a project where a sketch turns into something a teammate can actually click, play, or break.</p>
+        <p>At a hackathon, I’m up for building the interface, connecting it to the backend, and getting a working demo into someone’s hands.</p>
+        <p class="location"><svg class="icon"><use href="#i-pin"/></svg>Bengaluru, India</p>
+      </div>
+      <div class="stack reveal" id="stack" style="--delay:80ms">
+        <h3>My toolkit<span class="ink-dot">.</span></h3>
+        <dl><div><dt>Languages</dt><dd>Python <b>·</b> C/C++ <b>·</b> Java</dd></div><div><dt>Frontend</dt><dd>React <b>·</b> HTML <b>·</b> CSS</dd></div><div><dt>Backend &amp; data</dt><dd>Node.js <b>·</b> SQL</dd></div></dl>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="frame section contact" aria-labelledby="contact-title">
+    <div class="contact-copy reveal">
+      <p class="eyebrow"><span class="accent-rule"></span>Contact</p>
+      <h2 id="contact-title">Let’s build <em>together.</em></h2>
+      <p>Have a hackathon team or an idea you want to try? Drop me a line.</p>
+    </div>
+    <div class="contact-methods reveal" style="--delay:70ms">
+      <div class="email-row"><a href="mailto:contact.kaushikraj.cse@gmail.com" class="email-link"><svg class="icon"><use href="#i-mail"/></svg><span>contact.kaushikraj.cse@gmail.com</span></a><button class="icon-button copy-button" id="copy-email" type="button" aria-label="Copy email address" title="Copy email address"><svg class="icon"><use href="#i-copy"/></svg></button></div>
+      <div class="social-row"><a href="https://github.com/Kaushik-Raj10" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-github"/></svg>GitHub</a><a href="https://www.linkedin.com/in/kaushik-raj-99652a438/" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-linkedin"/></svg>LinkedIn</a></div>
+      <p id="copy-status" role="status" class="copy-status"></p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="frame footer-inner"><a href="#top" class="footer-brand"><span class="brand-mark" aria-hidden="true"></span>Kaushik Raj</a><span>© 2026</span><a class="top-link" href="#top">Back to top</a></div></footer>
+<dialog id="mail-dialog" class="project-dialog" aria-labelledby="mail-title">
+  <button class="icon-button dialog-close" type="button" data-close aria-label="Close project"><svg class="icon"><use href="#i-close"/></svg></button>
+  <div class="detail-cover"><img src="assets/monsoon-mail.webp" alt="Monsoon Mail rooftop concept artwork" width="900" height="450" loading="lazy"><span class="poster-label">Concept art</span></div>
+  <div class="detail-body">
+    <p class="category">ROBLOX <span>/</span> IN DEVELOPMENT</p><h2 id="mail-title">Monsoon <em>Mail.</em></h2>
+    <p>Monsoon Mail is a Roblox game I’m building around a rooftop delivery route. The first stretch connects two rooftops with a bridge and gives the player a stamp for finishing a delivery.</p>
+    <h3>Inside the prototype</h3>
+    <ul class="milestones"><li>A traversable roof-to-roof route</li><li>A delivery prompt players can interact with</li><li>A stamp to mark a completed delivery</li></ul>
+    <button type="button" class="button subtle" data-close>Back to work</button>
+  </div>
+</dialog>
+<dialog id="signal-dialog" class="project-dialog" aria-labelledby="signal-title">
+  <button class="icon-button dialog-close" type="button" data-close aria-label="Close experiment"><svg class="icon"><use href="#i-close"/></svg></button>
+  <div class="lab-display"><canvas id="signal-screen" class="signal-art" aria-label="Visualization of the selected waveform"></canvas><span class="lab-readout" id="lab-readout">SINE / 220 HZ</span></div>
+  <div class="detail-body lab-body">
+    <p class="category">INTERACTIVE EXPERIMENT <span>/</span> WEB AUDIO</p><h2 id="signal-title">Signal <em>Lab.</em></h2>
+    <p>Pick a wave, change its pitch, and switch on the sound to hear what you’ve made.</p>
+    <fieldset class="wave-controls"><legend>Waveform</legend><div class="wave-options"><button type="button" data-wave="sine" aria-pressed="true">Sine</button><button type="button" data-wave="triangle" aria-pressed="false">Triangle</button><button type="button" data-wave="square" aria-pressed="false">Square</button></div></fieldset>
+    <label class="pitch-label" for="pitch">Pitch <output id="pitch-value" for="pitch">220 Hz</output></label>
+    <input type="range" id="pitch" min="110" max="660" value="220" step="1">
+    <button id="sound-toggle" type="button" class="button primary" aria-pressed="false"><svg class="icon"><use href="#i-play"/></svg><span>Play sound</span></button><p id="audio-status" role="status"></p>
+  </div>
+</dialog>
+</body>
+</html>

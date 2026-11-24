@@ -1,0 +1,45 @@
+/* WELLsync and the extra project cards on the homepage. */
+h1 .italic-line { font-size: 1.04em; }
+.well-feature { display: grid; grid-template-columns: 1.12fr 1fr; margin-bottom: clamp(2rem, 3.2vw, 3.4rem); border: 1px solid #354740; border-radius: .65rem; background: #15251f; overflow: hidden; }
+.well-copy { align-self: center; padding: clamp(1.5rem, 3.2vw, 3.3rem); }
+.well-copy .category { margin: 0 0 .8rem; color: #b2caba; }
+.well-copy h3 { font-size: clamp(2.7rem, 4.4vw, 4.8rem); color: #f0f1dd; letter-spacing: -.075em; }
+.well-copy h3 em { font: italic 1.12em/.9 var(--serif); color: #b9e9c5; }
+.well-copy > p:not(.category) { color: #ccd3c5; max-width: 33rem; margin-top: .65rem; }
+.feature-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; margin-top: 1.2rem; }
+.well-primary { min-height: 2.65rem; background: #b9e9c5; color: #11231a; }
+.well-primary:hover { background: #d5f4d6; }
+.feature-code, .repo-source { display: inline-flex; align-items: center; gap: .45rem; color: #d5ddce; font-size: .9rem; }
+.feature-code:hover, .repo-source:hover, .repo-item a:hover { color: var(--accent); }
+.well-art { display: grid; place-items: center; overflow: hidden; min-height: 14rem; background: radial-gradient(ellipse, #74956645, transparent 67%), repeating-linear-gradient(90deg, transparent 0 26px,#7caa901d 27px,transparent 28px), repeating-linear-gradient(0deg,transparent 0 26px,#7caa901d 27px,transparent 28px), #172c23; mask-image: linear-gradient(90deg,transparent,#000 18%); }
+.well-field { position: relative; width: min(70%,17rem); aspect-ratio: 1; transform: rotate(-15deg) skewX(-7deg); }
+.well-field i { position: absolute; inset: var(--inset,1%); border-radius: 50%; background: conic-gradient(from var(--start,7deg), transparent 0deg 30deg,var(--ring,#aee7ba) 35deg 285deg,transparent 290deg 308deg,var(--ring,#aee7ba) 312deg); mask-image: radial-gradient(closest-side, transparent 80%,#000 81%); animation: orbit-stroke var(--time,55s) linear infinite; }
+.well-field i:nth-child(2) { --inset: 13%; --ring: #60ac87; --start: 90deg; --time: 42s; animation-direction: reverse; }
+.well-field i:nth-child(3) { --inset: 25%; --ring: #edc37e; --start: 175deg; --time: 48s; }
+.well-field span { position: absolute; inset: 0; display: grid; place-items: center; color: #d2eed6; font: italic clamp(1.6rem,3vw,3rem)/1 var(--serif); }
+@keyframes orbit-stroke { to { transform: rotate(360deg); } }
+.projects { row-gap: clamp(2.1rem,3.5vw,3.8rem); }
+.sort-studio-cover { display: grid; place-items: center; background: radial-gradient(ellipse at 57% 40%,#31493d,#14231e 72%); }
+.bar-cover-art { display: flex; align-items: end; gap: 1.7%; width: 78%; height: 57%; transform: skewY(-6deg); border-bottom: 1px solid #d3ffb387; }
+.bar-cover-art i { flex: 1; height: var(--height); background: linear-gradient(0deg,#478877,#bceba6); border-radius: 2px 2px 0 0; transform-origin: bottom; }
+.bar-cover-art i:nth-child(4n) { background: linear-gradient(0deg,#bf6444,#ffc094); }
+.sort-studio-cover:hover i { animation: sort-pulse .7s ease-in-out; animation-delay: calc(var(--order) * 16ms); }
+@keyframes sort-pulse { 45% { transform: scaleY(.7); } }
+.palette-press-cover { display: grid; place-items: center; background: radial-gradient(ellipse at 50% 55%,#684153,#3c2639 77%); }
+.palette-cover-art { display: flex; width: 77%; height: 61%; transform: rotate(-7deg); }
+.palette-cover-art i { flex: 1; position: relative; margin-left: -1%; border-radius: .35rem; background: var(--chip); box-shadow: -3px 5px 10px #24142155; transform: translateY(calc((var(--order) - 2) * 6%)); transition: transform .3s; }
+.palette-cover-art span { position: absolute; bottom: 7%; left: 9%; font: .7rem var(--mono); color: #291b2b; }
+.palette-cover-art i:last-child span { color: #edcbdb; }
+.palette-press-cover:hover i { transform: translateY(calc((var(--order) - 2) * 12%)); }
+.repo-shelf { margin-top: clamp(3.4rem,5.5vw,6rem); }
+.repo-heading { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.15rem; }
+.repo-heading h3 { font-size: clamp(1.9rem,3.1vw,3.5rem); letter-spacing: -.06em; }
+.repo-heading em { font: italic 1.14em/1 var(--serif); color: var(--accent); }
+.repo-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(1.4rem,4.5vw,5rem); }
+.repo-item { border-top: 1px solid var(--rule); padding: 1.2rem 0 1.4rem; }
+.repo-tech { color: var(--soft); font: .78rem var(--mono); }
+.repo-item h4 { font-size: clamp(1.35rem,2.2vw,2rem); letter-spacing: -.045em; line-height: 1.1; margin: .45rem 0; }
+.repo-item > p:not(.repo-tech) { color: var(--muted); max-width: 35rem; }
+.repo-source { margin-top: .7rem; padding-block: .15rem; }
+@media (max-width: 760px) { .well-feature { grid-template-columns: 1.25fr .75fr; } .well-field { width: 90%; } .palette-cover-art span { font-size: .63rem; } }
+@media (max-width: 560px) { .well-feature, .repo-list { grid-template-columns: 1fr; } .well-art { order: -1; height: 10rem; min-height: 0; mask-image: linear-gradient(0deg,transparent,#000 15%); } .well-field { width: 9rem; } }
